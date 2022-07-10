@@ -22,28 +22,28 @@ def input_wanted(search):
     address, limittime = [], []
     process = 'start'
     
+    # chromeOption = webdriver.ChromeOptions()
+
+    # chromeOption.add_argument("start-maximized")
+    # chromeOption.add_argument('--headless')
+    # chromeOption.add_argument('--no-sandbox')
+    # chromeOption.add_argument('--disable-dev-shm-usage')
+    # driver = webdriver.Chrome(chrome_options=chromeOption)
+
     chromeOption = webdriver.ChromeOptions()
-
-    chromeOption.add_argument("start-maximized")
-    chromeOption.add_argument('--headless')
-    chromeOption.add_argument('--no-sandbox')
-    chromeOption.add_argument('--disable-dev-shm-usage')
+    chromeOption.add_argument("--lang=zh-CN.UTF8")
+    chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
     driver = webdriver.Chrome(chrome_options=chromeOption)
-
-        # chromeOption = webdriver.ChromeOptions()
-        # chromeOption.add_argument("--lang=zh-CN.UTF8")
-        # chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-        # driver = webdriver.Chrome(chrome_options=chromeOption)
         
         # driver = webdriver.Chrome()
         # driver.set_window_size(1024, 960)
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
-    
-    driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
+    try:
+        driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
         
     #driver.maximize_window()
-    try:
+
         driver.implicitly_wait(2)
 
         # 1st info
