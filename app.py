@@ -60,7 +60,7 @@ def input_wanted(search):
     driver.quit()
 
     
-    return name
+    return name[0]
 
 def testing(name):
     return name
