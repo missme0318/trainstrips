@@ -64,12 +64,11 @@ def handle_message(event):
         r = search_trips(tripsinfo)
     elif '訂購台鐵車票' in msg:
         r = '請依格式輸入ID/起終點/日期/車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
-    elif '訂購' in msg:
-        bookinfo = msg.replace('訂購\n','')
-        r = booking_train(bookinfo)
-
+    # elif '訂購' in msg:
+    #     bookinfo = msg.replace('訂購\n','')
+    #     r = booking_train(bookinfo)
     elif '取消台鐵車票' in msg:
-        r = '請依格式輸入ID/車次\n例如：\n\n取消\nS223551400\n150'
+        r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
     elif '尋找美食' in msg:
         r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
     elif '尋找' in msg:
