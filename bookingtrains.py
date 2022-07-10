@@ -6,12 +6,10 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
-# pip3 install django-recaptcha
 from PIL import Image
-# pip3 install Pillow
-
 from twocaptcha import TwoCaptcha
-# pip3 install 2captcha-python
+
+import time
 
 def solveRecaptha(sitekey, pageurl):
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
