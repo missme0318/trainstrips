@@ -94,7 +94,7 @@ def handle_message(event):
     elif '聊天' in msg:
         r = '我是機器人'
     elif '高雄美食' == msg:
-        r = input_wanted(高雄美食)
+        r = input_wanted('高雄美食')
     elif 'Poppy' == msg:
         r = testing(msg)
     else:
