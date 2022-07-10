@@ -39,9 +39,12 @@ def input_wanted(search):
         # driver.set_window_size(1024, 960)
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
+    driver.get('https://www.google.com.tw/maps/')
     try:
-        driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
         
+        title = driver.find_element(By.ID, 'searchboxinput')
+        title.send_keys('高雄美食')
+
     #driver.maximize_window()
 
         driver.implicitly_wait(2)
