@@ -20,7 +20,6 @@ handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
 def input_wanted(search):
     address, limittime = [], []
-    process = []
     
     # chromeOption = webdriver.ChromeOptions()
     # chromeOption.add_argument("--lang=zh-CN.UTF8")
@@ -32,7 +31,7 @@ def input_wanted(search):
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
     try:
         driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
-        process.append('start')
+        process = 'start'
     #driver.maximize_window()
 
         driver.implicitly_wait(2)
@@ -48,7 +47,7 @@ def input_wanted(search):
         print('4')
         driver.quit()
     except:
-        process.append('non-start')
+        process = 'non-start'
     
     return process
 
