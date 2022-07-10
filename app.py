@@ -11,8 +11,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 
-import time
-from selenium import webdriver
 
 app = Flask(__name__)
 
@@ -25,13 +23,14 @@ def input_wanted(search):
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-    driver = webdriver.Chrome()
-    driver.set_window_size(1024, 960)
+    driver = webdriver.Chrome(chrome_options=chromeOption)
+    
 
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
     driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
-    driver.maximize_window()
+    driver.set_window_size(1024, 960)
+    #driver.maximize_window()
 
     driver.implicitly_wait(2)
 
