@@ -23,9 +23,17 @@ def input_wanted(search):
     process = 'start'
     try:
         chromeOption = webdriver.ChromeOptions()
-        chromeOption.add_argument("--lang=zh-CN.UTF8")
-        chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+
+        chromeOption.add_argument("start-maximized")
+        chromeOption.add_argument('--headless')
+        chromeOption.add_argument('--no-sandbox')
+        chromeOption.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(chrome_options=chromeOption)
+
+        # chromeOption = webdriver.ChromeOptions()
+        # chromeOption.add_argument("--lang=zh-CN.UTF8")
+        # chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+        # driver = webdriver.Chrome(chrome_options=chromeOption)
         
         # driver = webdriver.Chrome()
         # driver.set_window_size(1024, 960)
@@ -40,15 +48,14 @@ def input_wanted(search):
 
         # 1st info
         operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
-        print('1')
+
         name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
-        print('2')
+
         websites = operation.find_elements(By.TAG_NAME, 'a')
-        print('3')
+
         name = [i.text.split('\n')[0] for i in name_type]
-        print('4')
         driver.quit()
-    except:
+    except :
         process = 'non-start'
     
     return process
