@@ -20,36 +20,6 @@ line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Y
 handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
 
-# def input_wanted(search):
-#     address, limittime = [], []
-  
-#     chromeOption = webdriver.ChromeOptions()
-#     chromeOption.add_argument("--lang=zh-CN.UTF8")
-#     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-#     driver = webdriver.Chrome(chrome_options=chromeOption)
-    
-#     # driver.set_window_size(1024, 960)
-
-#     driver.get(f'https://www.google.com.tw/maps/search/{search}/@23.546162,120.6402133,8z?hl=zh-TW/data=!4m4!2m3!5m1!2e1!6e5')
-    
-
-#     #driver.maximize_window()
-
-#     driver.implicitly_wait(2)
-
-#     operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
-    
-#     name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
-#     name = [i.text.split('\n')[0] for i in name_type]
-
-
-#     driver.quit()
-
-#     return name[0]
-
-def testing(name):
-    return name
-
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -85,13 +55,20 @@ def handle_message(event):
 
 
     if msg in ['hi', 'Hi!']:
-        r = 'Hi!'
-    elif '聊天' in msg:
-        r = '我是機器人'
-    elif '高雄美食' == msg:
-        r = input_wanted('高雄美食')
-    elif 'Poppy' == msg:
-        r = testing(msg)
+        r = '功能：\n1.查詢台鐵車次\n2.訂購台鐵車票\n3.取消台鐵車票\n尋找美食'
+    elif '查詢台鐵車次' in msg:
+        r = '請依格式輸入起終點/日期/時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
+    elif '查詢' in msg:
+        r = msg
+    elif '訂購台鐵車票' in msg:
+        r = '請依格式輸入ID/起終點/日期/車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
+    elif '取消台鐵車票' in msg:
+        r = '請依格式輸入ID/車次\n例如：\n\n取消\nS223551400\n150'
+    elif '尋找美食' in msg:
+        r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
+    elif '尋找' in msg:
+        search = msg.replace('尋找','')
+        r = input_wanted(search)
     else:
         r = '抱歉！說什麼？'
 
