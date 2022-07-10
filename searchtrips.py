@@ -56,6 +56,8 @@ def search_trips(info):
         
     driver.quit()
     
-    tripsinfo = [(f'車種:{traintype}\n車次:{tris}\n發車:{start}\n抵達:{arrived}\n車費:{fare}\n') for traintype, tris, start, arrived, fare in zip(traintype, trips, starttime, arrivedtime, fare)]
+    tripsinfo = ''
+    for traintype, tris, start, arrived, fare in zip(traintype, trips, starttime, arrivedtime, fare):
+        tripsinfo += (f'車種:{traintype}\n車次:{tris}\n發車:{start}\n抵達:{arrived}\n車費:{fare}\n\n')
 
     return tripsinfo
