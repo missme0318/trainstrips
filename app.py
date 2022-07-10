@@ -39,11 +39,11 @@ def input_wanted(search):
         # driver.set_window_size(1024, 960)
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
-    try:
-        driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
+    
+    driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
         
     #driver.maximize_window()
-
+    try:
         driver.implicitly_wait(2)
 
         # 1st info
