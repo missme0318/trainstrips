@@ -40,18 +40,18 @@ def input_wanted(search):
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
     driver.get(f'https://www.google.com.tw/maps/search/{search}/data=!4m4!2m3!5m1!2e1!6e5')
-    try:
+    
         
-        title = driver.find_element(By.ID, 'searchboxinput')
-        title.send_keys('高雄美食')
+        # title = driver.find_element(By.ID, 'searchboxinput')
+        # title.send_keys('高雄美食')
 
     #driver.maximize_window()
 
-        driver.implicitly_wait(2)
+    driver.implicitly_wait(2)
 
         # 1st info
-        operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
-
+    operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
+    try:
         name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
 
         websites = operation.find_elements(By.TAG_NAME, 'a')
@@ -59,6 +59,7 @@ def input_wanted(search):
         name = [i.text.split('\n')[0] for i in name_type]
         driver.quit()
     except :
+        driver.quit()
         process = 'non-start'
     
     return process
