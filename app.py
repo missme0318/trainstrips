@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import Select
 
 from googlemap import input_wanted
 from searchtrips import search_trips
-#from bookingtrains import *
+from booking import booking_train, solveRecaptha
 
 
 app = Flask(__name__)
