@@ -39,7 +39,7 @@ def input_wanted(search):
         # driver.set_window_size(1024, 960)
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
-    driver.get('https://www.google.com.tw/maps/')
+    driver.get(f'https://www.google.com.tw/maps/search/{search}/data=!4m4!2m3!5m1!2e1!6e5')
     try:
         
         title = driver.find_element(By.ID, 'searchboxinput')
