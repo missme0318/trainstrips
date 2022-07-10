@@ -9,6 +9,7 @@ from PIL import Image
 from twocaptcha import TwoCaptcha
 
 import time
+import os
 
 def solveRecaptha(sitekey, pageurl):
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
