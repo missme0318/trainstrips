@@ -60,7 +60,7 @@ def handle_message(event):
     elif '查詢台鐵車次' in msg:
         r = '請依格式輸入起終點/日期/時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
     elif '查詢' in msg:
-        tripsinfo = msg.split('查詢','')
+        tripsinfo = msg.replace('查詢\n','')
         r = search_trips(tripsinfo)
     elif '訂購台鐵車票' in msg:
         r = '請依格式輸入ID/起終點/日期/車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
