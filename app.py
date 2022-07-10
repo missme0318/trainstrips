@@ -52,9 +52,9 @@ def input_wanted(search):
         # 1st info
     operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
     
-        name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
+    name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
 
-        websites = operation.find_elements(By.TAG_NAME, 'a')
+    websites = operation.find_elements(By.TAG_NAME, 'a')
     try:
         name = [i.text.split('\n')[0] for i in name_type]
         driver.quit()
