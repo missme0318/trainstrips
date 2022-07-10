@@ -21,14 +21,14 @@ handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 def input_wanted(search):
     address, limittime = [], []
     process = 'start'
-    try:
-        chromeOption = webdriver.ChromeOptions()
+    
+    chromeOption = webdriver.ChromeOptions()
 
-        chromeOption.add_argument("start-maximized")
-        chromeOption.add_argument('--headless')
-        chromeOption.add_argument('--no-sandbox')
-        chromeOption.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Chrome(chrome_options=chromeOption)
+    chromeOption.add_argument("start-maximized")
+    chromeOption.add_argument('--headless')
+    chromeOption.add_argument('--no-sandbox')
+    chromeOption.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(chrome_options=chromeOption)
 
         # chromeOption = webdriver.ChromeOptions()
         # chromeOption.add_argument("--lang=zh-CN.UTF8")
@@ -39,7 +39,7 @@ def input_wanted(search):
         # driver.set_window_size(1024, 960)
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
-    
+    try:
         driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
         
     #driver.maximize_window()
