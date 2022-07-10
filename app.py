@@ -12,6 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 
 from googlemap import input_wanted
+from seachtrips import search_trips
 
 
 app = Flask(__name__)
@@ -55,11 +56,12 @@ def handle_message(event):
 
 
     if msg in ['hi', 'Hi!']:
-        r = '功能：\n1.查詢台鐵車次\n2.訂購台鐵車票\n3.取消台鐵車票\n尋找美食'
+        r = '功能：\n1.查詢台鐵車次\n2.訂購台鐵車票\n3.取消台鐵車票\n4.尋找美食'
     elif '查詢台鐵車次' in msg:
         r = '請依格式輸入起終點/日期/時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
     elif '查詢' in msg:
-        r = msg
+        tripsinfo = msg.split('查詢','')
+        r = search_trips(tripsinfo)
     elif '訂購台鐵車票' in msg:
         r = '請依格式輸入ID/起終點/日期/車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
     elif '取消台鐵車票' in msg:
