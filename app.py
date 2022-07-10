@@ -13,7 +13,7 @@ from selenium.webdriver.support.ui import Select
 
 from googlemap import input_wanted
 from searchtrips import search_trips
-from bookingtrains import booking_train
+from bookingtrains import booking_train, solveRecaptha
 
 app = Flask(__name__)
 
@@ -67,7 +67,7 @@ def handle_message(event):
     elif '訂購' in msg:
         bookinfo = msg.replace('訂購\n','')
         r = booking_train(bookinfo)
-        
+
     elif '取消台鐵車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nS223551400\n150'
     elif '尋找美食' in msg:
