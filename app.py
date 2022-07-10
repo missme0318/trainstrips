@@ -1,20 +1,44 @@
 from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
 
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,StickerSendMessage
-)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage,StickerSendMessage)
+
+import time
+from selenium import webdriver
 
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Ydb2/PPmtL0GbrhW84+TfO8nlWDjV2dTvCeSLrnhW0mA6efqIZ40zOlX1I7l47BrzXifLxD3pc5LEkQ7z0MtN4579ivGdoDK0QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
+
+def input_wanted(search):
+    address, limittime = [], []
+    chromeOption = webdriver.ChromeOptions()
+    chromeOption.add_argument("--lang=zh-CN.UTF8")
+    chromeOption.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+    driver = webdriver.Chrome()
+    driver.set_window_size(1024, 960)
+
+
+    # driver = webdriver.Chrome(service=s, options=chromeOptions)
+    driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
+    driver.maximize_window()
+
+    driver.implicitly_wait(2)
+
+    # 1st info
+    operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
+    
+    name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
+    websites = operation.find_elements(By.TAG_NAME, 'a')
+
+    name = [i.text.split('\n')[0] for i in name_type]
+
+    driver.quit()
+    
+    return name
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -54,6 +78,8 @@ def handle_message(event):
         r = 'Hi!'
     elif '聊天' in msg:
         r = '我是機器人'
+    elif '高雄美食':
+        r = input_wanted(高雄美食)
     else:
         r = '抱歉！說什麼？'
 
