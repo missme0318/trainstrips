@@ -20,7 +20,7 @@ handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
 def input_wanted(search):
     address, limittime = [], []
-    process = 'start'
+    #process = 'start'
     
     # chromeOption = webdriver.ChromeOptions()
 
@@ -55,14 +55,12 @@ def input_wanted(search):
     name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
 
     websites = operation.find_elements(By.TAG_NAME, 'a')
-    try:
-        name = [i.text.split('\n')[0] for i in name_type]
-        driver.quit()
-    except :
-        driver.quit()
-        process = 'non-start'
+
+
+    driver.quit()
+
     
-    return process
+    return name
 
 def testing(name):
     return name
