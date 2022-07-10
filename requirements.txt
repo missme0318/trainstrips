@@ -4,3 +4,4 @@ flask
 selenium
 2captcha-python
 Pillow
+django-recaptcha
