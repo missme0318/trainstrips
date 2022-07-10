@@ -20,16 +20,17 @@ handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
 def input_wanted(search):
     address, limittime = [], []
-    chromeOption = webdriver.ChromeOptions()
-    chromeOption.add_argument("--lang=zh-CN.UTF8")
-    chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-    driver = webdriver.Chrome(chrome_options=chromeOption)
-    
+    # chromeOption = webdriver.ChromeOptions()
+    # chromeOption.add_argument("--lang=zh-CN.UTF8")
+    # chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+    # driver = webdriver.Chrome(chrome_options=chromeOption)
+    driver = webdriver.Chrome()
+    driver.set_window_size(1024, 960)
 
 
     # driver = webdriver.Chrome(service=s, options=chromeOptions)
     driver.get('https://www.google.com.tw/maps/search/'+searchname+'/data=!4m4!2m3!5m1!2e1!6e5')
-    driver.set_window_size(1024, 960)
+    
     #driver.maximize_window()
 
     driver.implicitly_wait(2)
@@ -44,6 +45,9 @@ def input_wanted(search):
 
     driver.quit()
     
+    return name
+
+def testing(name):
     return name
 
 @app.route("/callback", methods=['POST'])
@@ -84,8 +88,10 @@ def handle_message(event):
         r = 'Hi!'
     elif '聊天' in msg:
         r = '我是機器人'
-    elif '高雄美食':
+    elif '高雄美食' == msg:
         r = input_wanted(高雄美食)
+    elif 'Poppy' == msg:
+        r = testing(msg)
     else:
         r = '抱歉！說什麼？'
 
