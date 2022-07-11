@@ -47,10 +47,10 @@ def booking_train(bookinfo):
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
     driver = webdriver.Chrome(chrome_options=chromeOption)
 
-
-    railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-        #driver.maximize_window()
     try:
+        driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
+        #driver.maximize_window()
+    
         driver.set_window_size(1600,1024)
 
      
