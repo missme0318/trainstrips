@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import Select
 
 def cancel_train(cancelinfo):
 
-    # IDnum = cancelinfo.split('\n')[0]
+    cancelinfo = cancelinfo.split('\n')[0]
     # ticketnum = = cancelinfo.split('\n')[1]
     
     return cancelinfo
