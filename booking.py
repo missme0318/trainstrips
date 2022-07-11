@@ -53,9 +53,10 @@ def booking_train(bookinfo):
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
  
-    start = driver.find_element(By.ID, 'startStation')
+    
     
     try: 
+        start = driver.find_element(By.ID, 'startStation')
         start.send_keys(startwords)
 
         end = driver.find_element(By.ID, 'endStation')
