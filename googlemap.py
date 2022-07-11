@@ -48,15 +48,15 @@ def input_wanted(search):
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
-    for i in website:
-        addr, time = web_get_address(i)
-        address.append(addr)
-        limittime.append(time)
+    # for i in website:
+    #     addr, time = web_get_address(i)
+    #     address.append(addr)
+    #     limittime.append(time)
 
     mapinfo = ''
-    # for i in zip(name, comment, limittime,address, website):
-    #     mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n{i[3]}\n{i[4]}\n\n'
-    mapinfo = f'{name[0]}\n{comment[0]}\n{website[0]}'
+    for i in zip(name, comment, limittime,address, website):
+        mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n{i[3]}\n{i[4]}\n\n'
+    # mapinfo = f'{name[0]}\n{comment[0]}\n{website[0]}'
 
     driver.quit()
 
