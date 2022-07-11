@@ -78,31 +78,31 @@ def booking_train(bookinfo):
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     tickey_situation = str(tripsnums)+'stop3'
 
-    try:
-        soldout = '均無符合條件車次，請調整訂票條件'
-        soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-        tickey_situation = str(tripsnums)+soldout
-        driver.get_screenshot_as_file('finish.jpg')
+    # try:
+    #     soldout = '均無符合條件車次，請調整訂票條件'
+    #     soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
+    #     tickey_situation = str(tripsnums)+soldout
+    #     driver.get_screenshot_as_file('finish.jpg')
 
-    except:
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+    # except:
+    #     driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
         
-        time.sleep(3)
+    #     time.sleep(3)
 
-        payment = driver.find_element(By.ID, 'paymentMethod')
-        cash = Select(payment).options[1]
-        Select(payment).select_by_visible_text(cash.text)
+    #     payment = driver.find_element(By.ID, 'paymentMethod')
+    #     cash = Select(payment).options[1]
+    #     Select(payment).select_by_visible_text(cash.text)
 
-        time.sleep(3)
+    #     time.sleep(3)
 
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
+    #     driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
 
-        booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-        limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-        limittime = limittime.replace('您可以透過以下方式取票，','')
+    #     booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
+    #     limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
+    #     limittime = limittime.replace('您可以透過以下方式取票，','')
         
-        tickey_situation = f'{tripsnums}訂購完成！{booking_code}\n{limittime}'
-        driver.get_screenshot_as_file('finish.jpg')
+    #     tickey_situation = f'{tripsnums}訂購完成！{booking_code}\n{limittime}'
+    #     driver.get_screenshot_as_file('finish.jpg')
 
     # tickey_situation = 'stop3'
     driver.quit()
