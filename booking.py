@@ -53,18 +53,15 @@ def booking_train(bookinfo):
 
     # driver.set_window_size(1600,1024)
 
- 
-       
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
 
+    start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
+    start.send_keys(startwords)
+
+    end = driver.find_element(By.ID, 'endStation')
+    end.send_keys(endwords)
     try:
-        start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
-        start.send_keys(startwords)
-
-        end = driver.find_element(By.ID, 'endStation')
-        end.send_keys(endwords)
-
         date = driver.find_element(By.ID,'rideDate1')
         date.clear()
         date.send_keys(ridedatebook)

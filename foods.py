@@ -18,7 +18,7 @@ def delicious(sel):
                 pass
             fscore=float(score)   #評分
 
-            if fscore >= 4.8:
+            if fscore >= 4.5:
                 name=i.find('a',class_='title-text').get_text()
                 htt=('https://ifoodie.tw'+i.a['href'].split('-')[0]+'-'+name)
                 response1 = requests.get(htt)
