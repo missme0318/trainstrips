@@ -37,17 +37,15 @@ def booking_train(bookinfo):
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
 
-    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-    result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-    code = result['code']
-
+    # train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    # train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    # result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
+    # code = result['code']
 
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
     driver = webdriver.Chrome(chrome_options=chromeOption)
-    
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
     #driver.maximize_window()
@@ -70,6 +68,11 @@ def booking_train(bookinfo):
     trips = driver.find_element(By.ID, 'trainNoList1')
     trips.send_keys(tripsnums)
     
+    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
+    code = result['code']
+
     driver.find_element(By.ID, 'g-recaptcha-response')
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
@@ -77,7 +80,7 @@ def booking_train(bookinfo):
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     tickey_situation = 'stop3'
-    
+
     try:
         soldout= '均無符合條件車次，請調整訂票條件'
         soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
