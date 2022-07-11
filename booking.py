@@ -103,9 +103,9 @@ def booking_train(bookinfo):
             limittime = limittime.replace('您可以透過以下方式取票，','')
             
             tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
-            #driver.get_screenshot_as_file('finish.jpg')
+            driver.get_screenshot_as_file('finish.jpg')
 
-    tickey_situation = 'stop3'
+    # tickey_situation = 'stop3'
     driver.quit()
     
     return tickey_situation
