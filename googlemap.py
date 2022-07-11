@@ -33,21 +33,26 @@ def input_wanted(search):
 
     driver.get(f'https://www.google.com.tw/maps/search/{search}/@23.546162,120.6402133,8z?hl=zh-TW/data=!4m4!2m3!5m1!2e1!6e5')
     
-
-    #driver.maximize_window()
-
     driver.implicitly_wait(2)
 
     operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
     
     name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
-    
+    websites = operation.find_elements(By.TAG_NAME, 'a')
+
     name = [i.text.split('\n')[0] for i in name_type]
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
+    for i in website:
+        addr, time = web_get_address(i)
+        address.append(addr)
+        limittime.append(time)
 
+    mapinfo = ''
+    for i in zip(name, comment, limittime,address, website):
+        mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n{i[3]}\n{i[4]}\n\n'
 
     driver.quit()
 
-    return name[0]
+    return mapinfo
