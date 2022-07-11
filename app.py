@@ -1,7 +1,8 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage,StickerSendMessage
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage,StickerSendMessage)
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -41,14 +42,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    # if '取消\n' in msg:
-    #     # cancelinfo = msg.replace('取消\n','')
-    #     # r = cancel_train(cancelinfo)
-    #     image_message = ImageSendMessage(
-    #         original_content_url='./static/cancel_finish.jpg',
-    #         preview_image_url='./static/cancel_finish.jpg')
-    #     line_bot_api.reply_message(event.reply_token, image_message)
-    #     return
     if '貼圖' in msg:
         sticker_message = StickerSendMessage(
             package_id='1',
@@ -59,14 +52,6 @@ def handle_message(event):
         sticker_message)
 
         return
-
-    # if '測試圖片' in msg:
-    #     image_message = ImageSendMessage(
-    #         original_content_url='./static/cancel_finish.jpg',
-    #         preview_image_url='./static/cancel_finish.jpg')
-    #     line_bot_api.reply_message(event.reply_token, image_message)
-    # else:
-    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 
 
     if msg in ['hi', 'Hi!']:
@@ -83,7 +68,6 @@ def handle_message(event):
         r = booking_train(bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
-        imgs = 
     elif '取消\n' in msg:
         cancelinfo = msg.replace('取消\n','')
         r = cancel_train(cancelinfo)
@@ -98,9 +82,6 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
-
-
-    
 
 
 if __name__ == "__main__":
