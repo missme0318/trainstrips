@@ -49,9 +49,19 @@ def input_wanted(search):
     website = [str(i.get_attribute('href')) for i in websites]
 
     for i in website:
-        addr, time = web_get_address(i)
+        driver.get(i)
+        try:
+            address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
+        except:
+            address = '無地址提供'
+        
+        try:
+            time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
+        except:
+            time = '無提供時間'
         address.append(addr)
         limittime.append(time)
+
 
     # mapinfo = ''
     # for i in zip(name, comment, limittime,address, website):
