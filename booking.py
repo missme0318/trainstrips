@@ -74,7 +74,6 @@ def booking_train(bookinfo):
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
-    ticket_situation = 'star'
 
     # try:
     #     errormsg = driver.find_element(By.ID, 'errorDiv').text
@@ -83,7 +82,7 @@ def booking_train(bookinfo):
 
     # except:
     
-    driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
+    driver.find_elements(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
     time.sleep(3)
 
     payment = driver.find_element(By.ID, 'paymentMethod')
