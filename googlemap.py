@@ -43,16 +43,19 @@ def input_wanted(search):
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
-    driver.get(website[0])
-    try:
-        address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
-    except:
-        address = '無地址提供'
-    try:
-        time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
-    except:
-        time = '無提供時間'
+    for i in range(0,3):
+        driver.get(website[i])
+        try:
+            addr = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
+        except:
+            addr = '無地址提供'
+        try:
+            time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]       
+        except:
+            time = '無提供時間'
 
+        address.append(addr)
+        limittime.append(time)
     # for i in website:
     #     address, time = driver.get(str(i))
 
@@ -64,10 +67,10 @@ def input_wanted(search):
     #     limittime.append(time)
 
     mapinfo = ''
-    for i in zip(name, comment, website):
+    for i in zip(name, comment, website, address, limittime):
         count = int(name.index(i[0]))
         if count < 3 :
-            mapinfo += f'{i[0]}\n{i[1]}顆星\n{i[2]}\n\n'
+            mapinfo += f'{i[0]}\n{i[1]}顆星\n{i[2]}\n{i[3]}\n{i[4]}\n\n'
 
     driver.quit()
 
