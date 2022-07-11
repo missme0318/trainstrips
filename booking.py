@@ -29,7 +29,7 @@ def solveRecaptha(sitekey, pageurl):
 # 訂票
 
 def booking_train(bookinfo):
-    tickey_situation = ''
+    tickey_situation = 'nonnon'
     try:  
         IDnum = bookinfo.split('\n')[0]
         startwords = bookinfo.split('\n')[1]
@@ -112,4 +112,5 @@ def booking_train(bookinfo):
     except:
         tickey_situation = 'stop3'
    # driver.quit()
+   tickey_situation = 'nonnonnon33'
     return tickey_situation
