@@ -112,5 +112,5 @@ def booking_train(bookinfo):
     except:
         tickey_situation = 'stop3'
    # driver.quit()
-   tickey_situation = 'nonnonnon33'
+    tickey_situation = 'nonnonnon33'
     return tickey_situation
