@@ -27,10 +27,10 @@ def delicious(sel):
                 if count < 3:  #輸出3筆資料
                     for ii in d:
                         time=ii.find('div',class_='jsx-1969054371 openingHourWrapper wrap').text 
-                        tel=ii.find('a',class_='jsx-1969054371').text          #聯絡電話
+                        # tel=ii.find('a',class_='jsx-1969054371').text          #聯絡電話
                         addr=ii.find('span',class_='jsx-1969054371 detail').text  #地址
                         mapp='http://www.google.com.tw/maps/search/'+name   #google map
-                        a='{}\n評分:{}\n{}\n聯絡電話:{}\n地址:{}\ngoogle map:{}\n\n\n'.format(name,score,time,tel,addr,mapp)
+                        a='{}\n評分:{}\n{}\n地址:{}\ngoogle map:{}\n\n\n'.format(name,score,time,addr,mapp)
                         content+=a
                         count+=1
     if count == 0:
