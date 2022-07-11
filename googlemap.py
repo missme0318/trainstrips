@@ -36,8 +36,6 @@ def input_wanted(search):
         if count < 3 :
             mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n\n'
 
-    #mapinfo = f'{name[0]}\n{comment[0]}\n{website[0]}'
-
     driver.quit()
 
     return mapinfo
