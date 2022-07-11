@@ -55,8 +55,8 @@ def handle_message(event):
 
     # if '測試圖片' in msg:
     #     image_message = ImageSendMessage(
-    #         original_content_url='./static/cancel_finish.jpe',
-    #         preview_image_url='./static/cancel_finish.jpe')
+    #         original_content_url='./static/cancel_finish.jpg',
+    #         preview_image_url='./static/cancel_finish.jpg')
     #     line_bot_api.reply_message(event.reply_token, image_message)
     # else:
     #     line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
