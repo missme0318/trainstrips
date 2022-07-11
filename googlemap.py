@@ -48,9 +48,11 @@ def input_wanted(search):
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
-    for i in website:
-        address, time = driver.get(str(i))
-        
+    driver.get(website[0])
+    
+    # for i in website:
+    #     address, time = driver.get(str(i))
+
 
     # web_get_address(website[0])
     # for i in website:
