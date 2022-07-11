@@ -42,8 +42,8 @@ def callback():
 def handle_message(event):
     msg = event.message.text
     if '取消\n' in msg:
-        cancelinfo = msg.replace('取消\n','')
-        r = cancel_train(cancelinfo)
+        # cancelinfo = msg.replace('取消\n','')
+        # r = cancel_train(cancelinfo)
         image_message = ImageSendMessage(
             original_content_url='./static/cancel_finish.jpg',
             preview_image_url='./static/cancel_finish.jpg')
