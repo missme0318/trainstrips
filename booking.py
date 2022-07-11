@@ -30,16 +30,16 @@ def solveRecaptha(sitekey, pageurl):
 
 def booking_train(bookinfo):
     
-        IDnum = bookinfo.split('\n')[0]
-        startwords = bookinfo.split('\n')[1]
-        endwords = bookinfo.split('\n')[2]
-        ridedatebook = bookinfo.split('\n')[3]
-        tripsnums = bookinfo.split('\n')[4]
-    
-        train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-        train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-        result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-        code = result['code']
+    IDnum = bookinfo.split('\n')[0]
+    startwords = bookinfo.split('\n')[1]
+    endwords = bookinfo.split('\n')[2]
+    ridedatebook = bookinfo.split('\n')[3]
+    tripsnums = bookinfo.split('\n')[4]
+
+    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
+    code = result['code']
     try:
         chromeOption = webdriver.ChromeOptions()
         chromeOption.add_argument("--lang=zh-CN.UTF8")
