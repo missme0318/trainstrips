@@ -41,24 +41,24 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    if '取消\n' in msg:
-        # cancelinfo = msg.replace('取消\n','')
-        # r = cancel_train(cancelinfo)
-        image_message = ImageSendMessage(
-            original_content_url='./static/cancel_finish.jpg',
-            preview_image_url='./static/cancel_finish.jpg')
-        line_bot_api.reply_message(event.reply_token, image_message)
-        return
-    # if '貼圖' in msg:
-    #     sticker_message = StickerSendMessage(
-    #         package_id='1',
-    #         sticker_id='1'
-    #     )
-    #     line_bot_api.reply_message(
-    #     event.reply_token,
-    #     sticker_message)
-
+    # if '取消\n' in msg:
+    #     # cancelinfo = msg.replace('取消\n','')
+    #     # r = cancel_train(cancelinfo)
+    #     image_message = ImageSendMessage(
+    #         original_content_url='./static/cancel_finish.jpg',
+    #         preview_image_url='./static/cancel_finish.jpg')
+    #     line_bot_api.reply_message(event.reply_token, image_message)
     #     return
+    if '貼圖' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+        )
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+
+        return
 
     # if '測試圖片' in msg:
     #     image_message = ImageSendMessage(
