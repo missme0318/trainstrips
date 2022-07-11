@@ -82,25 +82,27 @@ def booking_train(bookinfo):
     #     driver.quit()
 
     # except:
+    try: 
+        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
+        time.sleep(3)
+
+        payment = driver.find_element(By.ID, 'paymentMethod')
+        cash = Select(payment).options[1]
+        Select(payment).select_by_visible_text(cash.text)
+
+        time.sleep(3)
+
+        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
+
+        booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
+        limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
+        limittime = limittime.replace('您可以透過以下方式取票，','')
         
-    driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
-    time.sleep(3)
-
-    payment = driver.find_element(By.ID, 'paymentMethod')
-    cash = Select(payment).options[1]
-    Select(payment).select_by_visible_text(cash.text)
-
-    time.sleep(3)
-
-    driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
-
-    booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-    limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-    limittime = limittime.replace('您可以透過以下方式取票，','')
-    
-    ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
-    driver.get_screenshot_as_file('finish.jpg')
-    driver.quit()
+        ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
+        driver.get_screenshot_as_file('finish.jpg')
+        driver.quit()
+    except ValueError as e:
+        ticket_situation = e
     
     return ticket_situation
 
