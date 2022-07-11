@@ -29,15 +29,12 @@ def solveRecaptha(sitekey, pageurl):
 # 訂票
 
 def booking_train(bookinfo):
-    
-     
+
     IDnum = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
     endwords = bookinfo.split('\n')[2]
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
-
-    tickey_situation = str(tripsnums)+'nonnon'
 
     train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
     train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
@@ -77,17 +74,19 @@ def booking_train(bookinfo):
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
-    tickey_situation = 'star'
-    
+    ticket_situation = 'star'
+
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
-        tickey_situation = errormsg
+        ticket_situation = errormsg
+        driver.quit()
 
     except:
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
-        
-        time.sleep(3)
         try:
+            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+            
+            time.sleep(3)
+        
             payment = driver.find_element(By.ID, 'paymentMethod')
             cash = Select(payment).options[1]
             Select(payment).select_by_visible_text(cash.text)
@@ -100,11 +99,10 @@ def booking_train(bookinfo):
             limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
             limittime = limittime.replace('您可以透過以下方式取票，','')
             
-            tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
+            ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
             driver.get_screenshot_as_file('finish.jpg')
+            driver.quit()
         except:
-            tickey_situation = 'stop3'
-
-    driver.quit()
+            ticket_situation = 'stop3'
     
-    return tickey_situation
+    return ticket_situation
