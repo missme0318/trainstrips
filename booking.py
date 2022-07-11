@@ -79,15 +79,10 @@ def booking_train(bookinfo):
     tickey_situation = 'stop3'
 
     try:
-        soldout = '均無符合條件車次，請調整訂票條件'
-        soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-        tickey_situation = soldout
-        driver.get_screenshot_as_file('finish.jpg')
-    except:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         tickey_situation = errormsg
 
-    else:
+    except:
         driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
         
         time.sleep(3)
