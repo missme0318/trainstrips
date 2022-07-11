@@ -48,7 +48,7 @@ def booking_train(bookinfo):
             
     railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
     #driver.maximize_window()
-      
+    driver.set_window_size(1600,1024)
         
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
