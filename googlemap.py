@@ -47,28 +47,28 @@ def input_wanted(search):
     name = [i.text.split('\n')[0] for i in name_type]
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
-
+    situ = ''
     try:
         for i in website:
             try:
                 driver.get(i)
             except:
-                situ = '1'
+                situ += '1'
             try:
                 address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
             except:
                 address = '無地址提供'
-                situ = '2'
+                situ += '2'
             
             try:
                 time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
             except:
                 time = '無提供時間'
-                situ = '3'
+                situ += '3'
             # address.append(addr)
             # limittime.append(time)
     except:
-        situ = '4'
+        situ += '4'
 
 
     # mapinfo = ''
