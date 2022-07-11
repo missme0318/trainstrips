@@ -114,9 +114,9 @@ def booking_train(bookinfo):
 
 
     except:
-        non_available = driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-        tickey_situation = non_available
-
+        #non_available = driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
+        #tickey_situation = non_available
+        tickey_situation = 'non-start2'
 
         driver.quit()
 
