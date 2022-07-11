@@ -47,7 +47,7 @@ def booking_train(bookinfo):
     driver = webdriver.Chrome(chrome_options=chromeOption)
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-    #driver.maximize_window()
+    driver.maximize_window()
 
     # driver.set_window_size(1600,1024)
 
@@ -75,32 +75,32 @@ def booking_train(bookinfo):
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
 
-    # try:
-    #     errormsg = driver.find_element(By.ID, 'errorDiv').text
-    #     ticket_situation = errormsg
-    #     driver.quit()
-
-    # except:
     try:
-        driver.find_elements(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
-        time.sleep(3)
+        errormsg = driver.find_element(By.ID, 'errorDiv').text
+        ticket_situation = errormsg
+        driver.quit()
 
-        payment = driver.find_element(By.ID, 'paymentMethod')
-        cash = Select(payment).options[1]
-        Select(payment).select_by_visible_text(cash.text)
-
-        time.sleep(3)
-
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
-
-        booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-        limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-        limittime = limittime.replace('您可以透過以下方式取票，','')
-
-        ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
-        driver.get_screenshot_as_file('finish.jpg')
     except:
-        ticket_situation = 'non'
-    
+        try:
+            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
+            time.sleep(3)
+
+            payment = driver.find_element(By.ID, 'paymentMethod')
+            cash = Select(payment).options[1]
+            Select(payment).select_by_visible_text(cash.text)
+
+            time.sleep(3)
+
+            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
+
+            booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
+            limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
+            limittime = limittime.replace('您可以透過以下方式取票，','')
+
+            ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
+            driver.get_screenshot_as_file('finish.jpg')
+        except:
+            ticket_situation = 'non'
+        
     return ticket_situation
 

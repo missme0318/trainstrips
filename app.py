@@ -55,7 +55,7 @@ def handle_message(event):
 
 
     if msg in ['hi', 'Hi!']:
-        r = '功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食'
+        r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
     elif '查詢車次' in msg:
         r = '請依格式輸入起終點.日期.時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
     elif '查詢\n' in msg:
@@ -77,7 +77,7 @@ def handle_message(event):
         search = msg.replace('尋找','')
         r = delicious(search)
     else:
-        r = '抱歉！說什麼？'
+        r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
 
     line_bot_api.reply_message(
         event.reply_token,
