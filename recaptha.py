@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 # from selenium.webdriver.support.ui import WebDriverWait
 from PIL import Image
-# from twocaptcha import TwoCaptcha
+from twocaptcha import TwoCaptcha
 
 import time
 # import os
