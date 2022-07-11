@@ -70,11 +70,11 @@ def booking_train(bookinfo):
     trips.send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
-    driver.execute_script(
-        "document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-
-    time.sleep(3)
     try:
+        driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+
+        time.sleep(3)
+    
         driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
         time.sleep(3)
