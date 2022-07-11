@@ -87,27 +87,28 @@ def booking_train(bookinfo):
         try: 
             driver.get_screenshot_as_file('rebook.jpg')
             driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+            tickey_situation = 'stop1'
         except:
-            tickey_situation = 'stop'
+            tickey_situation = 'stop2'
 
-        time.sleep(3)
-        driver.get_screenshot_as_file('infos.jpg')
+            time.sleep(3)
+            driver.get_screenshot_as_file('infos.jpg')
 
-        payment = driver.find_element(By.ID, 'paymentMethod')
-        cash = Select(payment).options[1]
-        Select(payment).select_by_visible_text(cash.text)
+            payment = driver.find_element(By.ID, 'paymentMethod')
+            cash = Select(payment).options[1]
+            Select(payment).select_by_visible_text(cash.text)
 
-        time.sleep(3)
+            time.sleep(3)
 
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
+            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
 
-        booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-        limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-        limittime = limittime.replace('您可以透過以下方式取票，','')
-        
-        tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
-        driver.get_screenshot_as_file('finish.jpg')
+            booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
+            limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
+            limittime = limittime.replace('您可以透過以下方式取票，','')
+            
+            tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
+            driver.get_screenshot_as_file('finish.jpg')
 
-    driver.quit()
+        driver.quit()
     
     return tickey_situation
