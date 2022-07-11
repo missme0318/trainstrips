@@ -37,10 +37,10 @@ def booking_train(bookinfo):
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
 
-    # train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    # train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-    # result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-    # code = result['code']
+    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
+    code = result['code']
 
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
@@ -68,11 +68,6 @@ def booking_train(bookinfo):
     trips = driver.find_element(By.ID, 'trainNoList1')
     trips.send_keys(tripsnums)
     
-    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-    result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-    code = result['code']
-
     driver.find_element(By.ID, 'g-recaptcha-response')
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
@@ -87,28 +82,24 @@ def booking_train(bookinfo):
         tickey_situation = soldout
 
     except:
-        try: 
-            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
-            tickey_situation = 'stop1'
-        except:
-            tickey_situation = 'stop2'
+        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+        
+        time.sleep(3)
 
-            time.sleep(3)
+        payment = driver.find_element(By.ID, 'paymentMethod')
+        cash = Select(payment).options[1]
+        Select(payment).select_by_visible_text(cash.text)
 
-            payment = driver.find_element(By.ID, 'paymentMethod')
-            cash = Select(payment).options[1]
-            Select(payment).select_by_visible_text(cash.text)
+        time.sleep(3)
 
-            time.sleep(3)
+        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
 
-            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
-
-            booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-            limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-            limittime = limittime.replace('您可以透過以下方式取票，','')
-            
-            tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
-            driver.get_screenshot_as_file('finish.jpg')
+        booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
+        limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
+        limittime = limittime.replace('您可以透過以下方式取票，','')
+        
+        tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
+        driver.get_screenshot_as_file('finish.jpg')
 
     # tickey_situation = 'stop3'
     driver.quit()
