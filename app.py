@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import Select
 from googlemap import input_wanted
 from searchtrips import search_trips
 from booking import booking_train, solveRecaptha
+from foods import delicious
 # from cancel import cancel_train
 
 app = Flask(__name__)
@@ -74,7 +75,7 @@ def handle_message(event):
         r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
     elif '尋找' in msg:
         search = msg.replace('尋找','')
-        r = input_wanted(search)
+        r = delicious(search)
     else:
         r = '抱歉！說什麼？'
 

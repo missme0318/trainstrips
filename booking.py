@@ -51,7 +51,7 @@ def booking_train(bookinfo):
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
     #driver.maximize_window()
 
-    driver.set_window_size(1600,1024)
+    # driver.set_window_size(1600,1024)
 
  
     try:   
