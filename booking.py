@@ -78,43 +78,34 @@ def booking_train(bookinfo):
 
     time.sleep(3)
 
-
     try:
-        if '訂票成功' in driver.find_element(By.XPATH, '//*[@id="Nc4c41181-3cdb-468b-a3b4-7c8f67a08bb2"]/div[1]/p[1]/strong').tetx:
-            tickey_situation = '訂票成功'
-            # soldout= '均無符合條件車次，請調整訂票條件'
-            # soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-            # tickey_situation = soldout
-
-            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
-
-            time.sleep(3)
-            # driver.get_screenshot_as_file('static/infos.jpg')
-
-            payment = driver.find_element(By.ID, 'paymentMethod')
-            cash = Select(payment).options[1]
-            Select(payment).select_by_visible_text(cash.text)
-
-            time.sleep(3)
-
-            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
-
-            booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-            limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-            limittime = limittime.replace('您可以透過以下方式取票，','')
-            
-            tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
-            # driver.get_screenshot_as_file('static/finish.jpg')
-        else:
-            tickey_situation = 'non-start'
+        soldout= '均無符合條件車次，請調整訂票條件'
+        soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
+        tickey_situation = soldout
 
     except:
-        #non_available = driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-        #tickey_situation = non_available
-        tickey_situation = 'non-start2'
 
-        driver.quit()
+        driver.get_screenshot_as_file('rebook.jpg')
+        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+
+        time.sleep(3)
+        driver.get_screenshot_as_file('infos.jpg')
+
+        payment = driver.find_element(By.ID, 'paymentMethod')
+        cash = Select(payment).options[1]
+        Select(payment).select_by_visible_text(cash.text)
+
+        time.sleep(3)
+
+        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
+
+        booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
+        limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
+        limittime = limittime.replace('您可以透過以下方式取票，','')
         
+        tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
+        driver.get_screenshot_as_file('finish.jpg')
+
+    driver.quit()
     
     return tickey_situation
-
