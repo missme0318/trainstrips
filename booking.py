@@ -50,7 +50,7 @@ def booking_train(bookinfo):
         railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
         #driver.maximize_window()
         driver.set_window_size(1600,1024)
-    
+
         
         idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
         idlocate.send_keys(IDnum)
@@ -87,14 +87,12 @@ def booking_train(bookinfo):
 
         except:
             try: 
-                driver.get_screenshot_as_file('rebook.jpg')
                 driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
                 tickey_situation = 'stop1'
             except:
                 tickey_situation = 'stop2'
 
                 time.sleep(3)
-                driver.get_screenshot_as_file('infos.jpg')
 
                 payment = driver.find_element(By.ID, 'paymentMethod')
                 cash = Select(payment).options[1]
@@ -109,9 +107,8 @@ def booking_train(bookinfo):
                 limittime = limittime.replace('您可以透過以下方式取票，','')
                 
                 tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
-                driver.get_screenshot_as_file('finish.jpg')
+                #driver.get_screenshot_as_file('finish.jpg')
     except:
         tickey_situation = 'stop3'
    # driver.quit()
-    tickey_situation = 'nnn'
     return tickey_situation

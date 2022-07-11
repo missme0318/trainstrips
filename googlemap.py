@@ -59,7 +59,7 @@ def input_wanted(search):
     for i in zip(name, comment, website):
         count = int(name.index(i[0]))
         if count < 3 :
-            mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n{i[3]}\n{i[4]}\n\n'
+            mapinfo += f'{i[0]}\n{i[1]}顆星\n{i[2]}\n\n'
 
     driver.quit()
 
