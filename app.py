@@ -55,9 +55,8 @@ def handle_message(event):
 
     if '測試圖片' in msg:
         image_message = ImageSendMessage(
-            original_content_url='https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-bluehost-v1-0-9%2F659%2F790659%2FAtmP8Pmy%2F9c8c1e647eb14e01898043c0c60bf03a&methods=resize%2C1000%2C5000',
-            preview_image_url='https://images.builderservices.io/s/cdn/v1.0/i/m?url=https%3A%2F%2Fstorage.googleapis.com%2Fproduction-bluehost-v1-0-9%2F659%2F790659%2FAtmP8Pmy%2Ffd2258c5ea6c43f591e8d9930d152b94&methods=resize%2C1000%2C5000'
-        )
+            original_content_url='./static/cancel_finish.jpe',
+            preview_image_url='./static/cancel_finish.jpe')
         line_bot_api.reply_message(event.reply_token, image_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
