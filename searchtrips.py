@@ -53,7 +53,8 @@ def search_trips(info):
         starttime.append(tripslist[6][-5:])
         arrivedtime.append(tripslist[7])
         fare.append(tripslist[15])
-        
+    
+    driver.delete_all_cookies()    
     driver.quit()
     
     tripsinfo = ''

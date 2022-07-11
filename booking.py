@@ -73,10 +73,9 @@ def booking_train(bookinfo):
     time.sleep(2)
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-    time.sleep(2)
+    driver.get_screenshot_as_file('static/finish.jpg')
     ticket_situation = 'non'
     try:
-        driver.get_screenshot_as_file('static/finish.jpg')
         tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = '訂購完成！'+str(tripsnum)
 
@@ -84,6 +83,7 @@ def booking_train(bookinfo):
             errormsg = driver.find_element(By.ID, 'errorDiv').text
             ticket_situation = errormsg
             driver.get_screenshot_as_file('static/finish.jpg')
+            driver.delete_all_cookies()
             driver.quit()
 
         except:
@@ -105,6 +105,7 @@ def booking_train(bookinfo):
 
             ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
             driver.get_screenshot_as_file('static/finish.jpg')
+            driver.delete_all_cookies()
             driver.quit()
 
     except:
