@@ -32,7 +32,8 @@ def input_wanted(search):
 
     mapinfo = ''
     for i in zip(name, comment, website):
-        mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n\n'
+        if nmae.index(i) < 3 :
+            mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n\n'
 
     #mapinfo = f'{name[0]}\n{comment[0]}\n{website[0]}'
 
