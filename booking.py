@@ -82,9 +82,10 @@ def booking_train(bookinfo):
     #     driver.quit()
 
     # except:
-    try: 
+    try:
         driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
         time.sleep(3)
+
 
         payment = driver.find_element(By.ID, 'paymentMethod')
         cash = Select(payment).options[1]
@@ -101,8 +102,8 @@ def booking_train(bookinfo):
         ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
         driver.get_screenshot_as_file('finish.jpg')
         driver.quit()
-    except ValueError as e:
-        ticket_situation = e
+    except:
+        ticket_situation = 'stop'
     
     return ticket_situation
 
