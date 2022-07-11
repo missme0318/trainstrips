@@ -74,10 +74,12 @@ def booking_train(bookinfo):
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     time.sleep(2)
+    driver.get_screenshot_as_file('static/finish.jpg')
 
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         ticket_situation = errormsg
+        driver.get_screenshot_as_file('static/finish.jpg')
         driver.quit()
 
     except:
@@ -98,7 +100,7 @@ def booking_train(bookinfo):
             limittime = limittime.replace('您可以透過以下方式取票，','')
 
             ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
-            driver.get_screenshot_as_file('finish.jpg')
+            driver.get_screenshot_as_file('static/finish.jpg')
             driver.quit()
 
         except:
