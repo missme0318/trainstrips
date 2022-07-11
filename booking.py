@@ -83,7 +83,7 @@ def booking_train(bookinfo):
 
     # except:
     
-    driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
+    driver.find_elements(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
     time.sleep(3)
     try:
 
