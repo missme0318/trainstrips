@@ -12,7 +12,7 @@ from googlemap import input_wanted
 from searchtrips import search_trips
 from booking import booking_train, solveRecaptha
 from foods import delicious
-# from cancel import cancel_train
+from cancel import cancel_train
 
 app = Flask(__name__)
 
