@@ -47,7 +47,7 @@ def handle_message(event):
         image_message = ImageSendMessage(
             original_content_url='./static/cancel_finish.jpg',
             preview_image_url='./static/cancel_finish.jpg')
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=r),image_message)
+        line_bot_api.reply_message(event.reply_token, image_message)
         return
     # if '貼圖' in msg:
     #     sticker_message = StickerSendMessage(
