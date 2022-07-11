@@ -1,8 +1,7 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import (MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImageSendMessage)
-import time
+from linebot.models import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -91,6 +90,17 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
+
+        return 
+
+    if '取消\n' in msg:
+        cancelinfo = msg.replace('取消\n','')
+        r = cancel_train(cancelinfo)
+        image_message = ImageSendMessage(
+            original_content_url='./static/cancel_finish.jpg',
+            preview_image_url='./static/cancel_finish.jpg')
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=r),image_message)
+
 
 
 if __name__ == "__main__":
