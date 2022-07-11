@@ -57,7 +57,7 @@ def booking_train(bookinfo):
     
     try: 
         start.send_keys(startwords)
-        
+
         end = driver.find_element(By.ID, 'endStation')
         end.send_keys(endwords)
 
@@ -108,8 +108,9 @@ def booking_train(bookinfo):
             # driver.get_screenshot_as_file('static/finish.jpg')
 
         driver.quit()
-    except:
-        tickey_situation = 'non-start'
+    except Exception as e:
+        e = str(e)
+        tickey_situation = e
 
     return tickey_situation
 
