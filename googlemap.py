@@ -59,17 +59,20 @@ def input_wanted(search):
                 address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
             except:
                 address = '無地址提供'
-                # situ += '2無地址提供'
+                situ += '2無地址提供'
             
             try:
                 time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
             except:
                 time = '無提供時間'
-                # situ += '3'
-            address.append(addr)
-            limittime.append(time)
+                situ += '3'
+            try:
+                address.append(addr)
+                limittime.append(time)
+            except:
+                situ += '4'
     except:
-        situ += '4'
+        situ += '5'
 
 
     # mapinfo = ''
