@@ -35,6 +35,6 @@ def delicious(sel):
                         content+=a
                         count+=1
     if count == 0:
-        content+='目前沒有推薦名單\n\n再給我多一點線索\n\n擴大範圍搜尋吧!\n\n例如：我要吃蛋糕'
+        content+='目前沒有推薦名單\n\n再給我多一點線索\n\n擴大範圍搜尋吧!\n\n例如：尋找\n吃蛋糕'
                     
     return content
