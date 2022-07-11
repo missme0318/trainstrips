@@ -76,6 +76,8 @@ def booking_train(bookinfo):
     #time.sleep(3)
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+
+    tickey_situation = 'star'
     
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
