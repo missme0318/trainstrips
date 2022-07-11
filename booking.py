@@ -80,11 +80,11 @@ def booking_train(bookinfo):
 
 
     try:
-        if available in driver.find_element(By.XPATH, '//*[@id="Nc4c41181-3cdb-468b-a3b4-7c8f67a08bb2"]/div[1]/p[1]/strong').tetx:
+        if '訂票成功' in driver.find_element(By.XPATH, '//*[@id="Nc4c41181-3cdb-468b-a3b4-7c8f67a08bb2"]/div[1]/p[1]/strong').tetx:
             tickey_situation = '訂票成功'
-        # soldout= '均無符合條件車次，請調整訂票條件'
-        # soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-        # tickey_situation = soldout
+            # soldout= '均無符合條件車次，請調整訂票條件'
+            # soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
+            # tickey_situation = soldout
 
             driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
 
@@ -114,7 +114,7 @@ def booking_train(bookinfo):
         tickey_situation = 'non-start2'
 
         driver.quit()
-
+        
     
     return tickey_situation
 
