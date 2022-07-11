@@ -2,15 +2,17 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from PIL import Image
-from twocaptcha import TwoCaptcha
+# from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.support.ui import WebDriverWait
+# from PIL import Image
+# from twocaptcha import TwoCaptcha
 
 import time
-import os
+# import os
+
+
 
 def test():
     return 'test'
