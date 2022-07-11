@@ -76,7 +76,7 @@ def booking_train(bookinfo):
     #time.sleep(3)
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-    tickey_situation = str(tripsnums)+'stop3'
+    tickey_situation = 'stop3'
 
     # try:
     #     soldout = '均無符合條件車次，請調整訂票條件'
