@@ -65,11 +65,10 @@ def booking_train(bookinfo):
     date = driver.find_element(By.ID,'rideDate1')
     date.clear()
     date.send_keys(ridedatebook)
-    
-    try:
-        trips = driver.find_element(By.ID, 'trainNoList1')
-        trips.send_keys(tripsnums)
 
+    trips = driver.find_element(By.ID, 'trainNoList1')
+    trips.send_keys(tripsnums)
+    try:
 
         driver.find_element(By.ID, 'g-recaptcha-response')
         driver.execute_script(
@@ -111,6 +110,6 @@ def booking_train(bookinfo):
                 #driver.get_screenshot_as_file('finish.jpg')
     except:
         tickey_situation = 'stop3'
-   # driver.quit()
+    driver.quit()
     
     return tickey_situation
