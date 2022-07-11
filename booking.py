@@ -73,7 +73,7 @@ def booking_train(bookinfo):
     #time.sleep(3)
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-
+    time.sleep(2)
 
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
@@ -83,13 +83,13 @@ def booking_train(bookinfo):
     except:
         try:
             driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
-            time.sleep(3)
+            time.sleep(2)
 
             payment = driver.find_element(By.ID, 'paymentMethod')
             cash = Select(payment).options[1]
             Select(payment).select_by_visible_text(cash.text)
 
-            time.sleep(3)
+            time.sleep(2)
 
             driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
 
@@ -99,6 +99,8 @@ def booking_train(bookinfo):
 
             ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
             driver.get_screenshot_as_file('finish.jpg')
+            driver.quit()
+
         except:
             ticket_situation = 'non'
         
