@@ -53,9 +53,6 @@ def booking_train(bookinfo):
         idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
         idlocate.send_keys(IDnum)
  
-    
-    
- 
         start = driver.find_element(By.ID, 'startStation')
         start.send_keys(startwords)
 
@@ -112,6 +109,8 @@ def booking_train(bookinfo):
     except Exception as e:
         e = str(e)
         tickey_situation = e
+    except:
+        tickey_situation = 'non-start'
 
     return tickey_situation
 
