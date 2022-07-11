@@ -29,6 +29,7 @@ def solveRecaptha(sitekey, pageurl):
 # 訂票
 
 def booking_train(bookinfo):
+    tickey_situation = ''
     try:  
         IDnum = bookinfo.split('\n')[0]
         startwords = bookinfo.split('\n')[1]
