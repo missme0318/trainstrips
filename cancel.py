@@ -39,3 +39,5 @@ def cancel_train(cancelinfo):
     finish_text = f'{cancelfinish2}\n{cancelfinish1}'
     
     driver.quit()
+
+    return finish_text
