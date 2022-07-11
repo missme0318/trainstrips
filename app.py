@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 from googlemap import input_wanted
 from searchtrips import search_trips
+from recaptha import test
 #from recaptha import solveRecaptha
 
 app = Flask(__name__)
