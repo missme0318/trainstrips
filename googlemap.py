@@ -5,6 +5,21 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 
+def web_get_address(web):
+    driver = webdriver.Chrome(executable_path='/Users/poppyyang/crawlers/chromedriver', options=chromeOptions)
+    driver.get(web)
+
+    try:
+        address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
+    except:
+        address = '無地址提供'
+        
+    try:
+        time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
+    except:
+        time = '無提供時間'
+    driver.quit()
+    return address, time
 
 def input_wanted(search):
     address, limittime = [], []
@@ -26,7 +41,11 @@ def input_wanted(search):
     operation = driver.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
     
     name_type = operation.find_elements(By.CLASS_NAME, 'Nv2PK')
+    
     name = [i.text.split('\n')[0] for i in name_type]
+    comment = [i.text.split('\n')[1][:3] for i in name_type]
+    website = [str(i.get_attribute('href')) for i in websites]
+
 
 
     driver.quit()
