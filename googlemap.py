@@ -5,6 +5,26 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 
+def web_get_address(web):
+    chromeOption = webdriver.ChromeOptions()
+    chromeOption.add_argument("--lang=zh-CN.UTF8")
+    chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+    driver = webdriver.Chrome(chrome_options=chromeOption)
+    
+    driver.get(web)
+
+    try:
+        address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
+    except:
+        address = '無地址提供'
+        
+    try:
+        time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
+    except:
+        time = '無提供時間'
+    driver.quit()
+    return address, time
+
 def input_wanted(search):
     address, limittime = [], []
   
@@ -28,11 +48,16 @@ def input_wanted(search):
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
+    address, time = [web_get_address(str(i)) for i in website]
+
+    address.append(address)
+    limittime.append(time)
+
     mapinfo = ''
-    for i in zip(name, comment, website):
+    for i in zip(name, comment, website, address, limittime):
         count = int(name.index(i[0]))
         if count < 3 :
-            mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n\n'
+            mapinfo += f'{i[0]}\n{i[1]}\n{i[2]}\n{i[3]}\n{i[4]}\n\n'
 
     driver.quit()
 
