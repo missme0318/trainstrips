@@ -39,45 +39,45 @@ def booking_train(bookinfo):
     train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
     result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
     code = result['code']
-
-    chromeOption = webdriver.ChromeOptions()
-    chromeOption.add_argument("--lang=zh-CN.UTF8")
-    chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-    driver = webdriver.Chrome(chrome_options=chromeOption)
-
-            
-    railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-    #driver.maximize_window()
-    driver.set_window_size(1600,1024)
-    
-    idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
-    idlocate.send_keys(IDnum)
-
-
-    start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
-    start.send_keys(startwords)
-
-    end = driver.find_element(By.ID, 'endStation')
-    end.send_keys(endwords)
-
-    date = driver.find_element(By.ID,'rideDate1')
-    date.clear()
-    date.send_keys(ridedatebook)
-
-    trips = driver.find_element(By.ID, 'trainNoList1')
-    trips.send_keys(tripsnums)
-
-
-    driver.find_element(By.ID, 'g-recaptcha-response')
-    driver.execute_script(
-        "document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-
-    time.sleep(3)
-
-    driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-
-    time.sleep(3)
     try:
+        chromeOption = webdriver.ChromeOptions()
+        chromeOption.add_argument("--lang=zh-CN.UTF8")
+        chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+        driver = webdriver.Chrome(chrome_options=chromeOption)
+
+             
+        railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
+        #driver.maximize_window()
+        driver.set_window_size(1600,1024)
+        
+        idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
+        idlocate.send_keys(IDnum)
+
+
+        start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
+        start.send_keys(startwords)
+
+        end = driver.find_element(By.ID, 'endStation')
+        end.send_keys(endwords)
+
+        date = driver.find_element(By.ID,'rideDate1')
+        date.clear()
+        date.send_keys(ridedatebook)
+
+        trips = driver.find_element(By.ID, 'trainNoList1')
+        trips.send_keys(tripsnums)
+
+
+        driver.find_element(By.ID, 'g-recaptcha-response')
+        driver.execute_script(
+            "document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+
+        time.sleep(3)
+
+        driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+
+        time.sleep(3)
+        
         try:
             soldout= '均無符合條件車次，請調整訂票條件'
             soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
