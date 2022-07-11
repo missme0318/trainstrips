@@ -82,10 +82,10 @@ def booking_train(bookinfo):
     #     driver.quit()
 
     # except:
+    
+    driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
+    time.sleep(3)
     try:
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
-        time.sleep(3)
-
 
         payment = driver.find_element(By.ID, 'paymentMethod')
         cash = Select(payment).options[1]
