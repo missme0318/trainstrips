@@ -30,28 +30,29 @@ def solveRecaptha(sitekey, pageurl):
 
 def booking_train(bookinfo):
     tickey_situation = 'nonnon'
+     
+    IDnum = bookinfo.split('\n')[0]
+    startwords = bookinfo.split('\n')[1]
+    endwords = bookinfo.split('\n')[2]
+    ridedatebook = bookinfo.split('\n')[3]
+    tripsnums = bookinfo.split('\n')[4]
+
+    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
+    code = result['code']
+
+    chromeOption = webdriver.ChromeOptions()
+    chromeOption.add_argument("--lang=zh-CN.UTF8")
+    chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+    driver = webdriver.Chrome(chrome_options=chromeOption)
+
+
+    railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
+    #driver.maximize_window()
+    driver.set_window_size(1600,1024)
+    
     try:  
-        IDnum = bookinfo.split('\n')[0]
-        startwords = bookinfo.split('\n')[1]
-        endwords = bookinfo.split('\n')[2]
-        ridedatebook = bookinfo.split('\n')[3]
-        tripsnums = bookinfo.split('\n')[4]
-
-        train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-        train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-        result = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-        code = result['code']
-
-        chromeOption = webdriver.ChromeOptions()
-        chromeOption.add_argument("--lang=zh-CN.UTF8")
-        chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-        driver = webdriver.Chrome(chrome_options=chromeOption)
-
-       
-        railway = driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-        #driver.maximize_window()
-        driver.set_window_size(1600,1024)
-
         
         idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
         idlocate.send_keys(IDnum)
@@ -112,5 +113,5 @@ def booking_train(bookinfo):
     except:
         tickey_situation = 'stop3'
    # driver.quit()
-    tickey_situation = 'nonnonnon33'
+    
     return tickey_situation
