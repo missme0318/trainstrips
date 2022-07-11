@@ -48,10 +48,10 @@ def input_wanted(search):
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
-    address, time = [web_get_address(str(i)) for i in website]
-
-    address.append(address)
-    limittime.append(time)
+    for i in website:
+        addr, time = web_get_address(str(i))
+        address.append(addr)
+        limittime.append(time)
 
     mapinfo = ''
     for i in zip(name, comment, website, address, limittime):
