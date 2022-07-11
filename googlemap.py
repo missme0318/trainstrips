@@ -49,7 +49,7 @@ def input_wanted(search):
     website = [str(i.get_attribute('href')) for i in websites]
 
 
-    web_get_address(website[0])
+    # web_get_address(website[0])
     # for i in website:
     #     addr, time = web_get_address(str(i))
     #     address.append(addr)
