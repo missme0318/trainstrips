@@ -67,6 +67,9 @@ def handle_message(event):
         r = booking_train(bookinfo)
     elif '取消台鐵車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
+    elif '取消' in msg:
+        cancelinfo = msg.replace('取消\n','')
+        r = cancel_train(cancelinfo)
     elif '尋找美食' in msg:
         r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
     elif '尋找' in msg:
