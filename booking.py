@@ -47,7 +47,7 @@ def booking_train(bookinfo):
     driver = webdriver.Chrome(chrome_options=chromeOption)
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-    driver.maximize_window()
+    #driver.maximize_window()
 
     # driver.set_window_size(1600,1024)
 
