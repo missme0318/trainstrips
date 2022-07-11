@@ -5,7 +5,7 @@ def delicious(sel):
     count=0
     content=''
     for i in range(1,3):
-        url='https://ifoodie.tw/explore/高雄市/list/'+sel+'?page='+str(i)
+        url='https://ifoodie.tw/explore/高雄市/list/'+sel+'?opening=true&sortby=popular&page='+str(i)
         #print('Start parsing pttHot....')
         response = requests.get(url)
         html_soup = BeautifulSoup(response.text, 'html.parser')
@@ -18,7 +18,7 @@ def delicious(sel):
                 pass
             fscore=float(score)   #評分
 
-            if fscore >= 4.5:
+            if fscore >= 4.8:
                 name=i.find('a',class_='title-text').get_text()
                 htt=('https://ifoodie.tw'+i.a['href'].split('-')[0]+'-'+name)
                 response1 = requests.get(htt)
@@ -29,7 +29,6 @@ def delicious(sel):
                         time=ii.find('div',class_='jsx-1969054371 openingHourWrapper wrap').text 
                         tel=ii.find('a',class_='jsx-1969054371').text          #聯絡電話
                         addr=ii.find('span',class_='jsx-1969054371 detail').text  #地址
-                        #goo=ii.find('span',class_='jsx-1969054371 map-outer').text
                         mapp='http://www.google.com.tw/maps/search/'+name   #google map
                         a='{}\n評分:{}\n{}\n聯絡電話:{}\n地址:{}\ngoogle map:{}\n\n\n'.format(name,score,time,tel,addr,mapp)
                         content+=a
