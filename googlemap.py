@@ -5,20 +5,20 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 
-def web_get_address(web):    
-    driver.get(web)
+# def web_get_address(web):    
+#     driver.get(web)
 
-    try:
-        address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
-    except:
-        address = '無地址提供'
+#     try:
+#         address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
+#     except:
+#         address = '無地址提供'
         
-    try:
-        time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
-    except:
-        time = '無提供時間'
-    #driver.quit()
-    return address, time
+#     try:
+#         time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
+#     except:
+#         time = '無提供時間'
+#     driver.quit()
+#     return address, time
 
 def input_wanted(search):
     address, limittime = [], []
@@ -43,8 +43,15 @@ def input_wanted(search):
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
 
-    web_get_address(website[0])
-
+    driver.get(website[0])
+    try:
+        address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
+    except:
+        address = '無地址提供'
+    try:
+        time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
+    except:
+        time = '無提供時間'
 
     # for i in website:
     #     address, time = driver.get(str(i))
