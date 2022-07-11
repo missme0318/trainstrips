@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import (MessageEvent, TextMessage, TextSendMessage,StickerSendMessage)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImageSendMessage)
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -53,6 +53,14 @@ def handle_message(event):
 
         return
 
+    if '測試圖片' in msg:
+        image_message = ImageSendMessage(
+            original_content_url='static/cancel_finish.jpe',
+            preview_image_url='static/cancel_finish.jpe')
+        line_bot_api.reply_message(
+        event.reply_token,
+        image_message)
+
 
     if msg in ['hi', 'Hi!']:
         r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
@@ -68,6 +76,7 @@ def handle_message(event):
         r = booking_train(bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
+        imgs = 
     elif '取消\n' in msg:
         cancelinfo = msg.replace('取消\n','')
         r = cancel_train(cancelinfo)
