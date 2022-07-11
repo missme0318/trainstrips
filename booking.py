@@ -72,11 +72,12 @@ def booking_train(bookinfo):
     driver.find_element(By.ID, 'g-recaptcha-response')
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
-    time.sleep(3)
-
+    #time.sleep(3)
+    try:
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     tickey_situation = 'stop3'
-    try:
+
+    
         soldout= '均無符合條件車次，請調整訂票條件'
         soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
         tickey_situation = soldout
