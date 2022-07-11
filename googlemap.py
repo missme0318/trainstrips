@@ -49,7 +49,7 @@ def input_wanted(search):
     website = [str(i.get_attribute('href')) for i in websites]
     situ = ''
     try:
-        for i in website[0]:
+        for i in website[:2]:
             try:
                 driver.get(i)
             except:
@@ -58,7 +58,7 @@ def input_wanted(search):
                 address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
             except:
                 address = '無地址提供'
-                situ += '2無地址'
+                situ += '2無地址提供'
             
             try:
                 time = driver.find_element(By.CLASS_NAME, 'm6QErb .OqCZI').text.split('\n')[0].split('⋅')[0]
