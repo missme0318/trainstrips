@@ -27,8 +27,6 @@ def input_wanted(search):
     name = [i.text.split('\n')[0] for i in name_type]
     comment = [i.text.split('\n')[1][:3] for i in name_type]
     website = [str(i.get_attribute('href')) for i in websites]
-    
-
 
     mapinfo = ''
     for i in zip(name, comment, website):

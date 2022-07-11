@@ -11,7 +11,7 @@ from selenium.webdriver.support.ui import Select
 from googlemap import input_wanted
 from searchtrips import search_trips
 from booking import booking_train, solveRecaptha
-from cancel import cancel_train
+#from cancel import cancel_train
 
 app = Flask(__name__)
 
