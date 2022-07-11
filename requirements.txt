@@ -5,3 +5,4 @@ selenium
 2captcha-python==1.1.2
 Pillow==9.2.0
 django-recaptcha==3.0.0
+https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query

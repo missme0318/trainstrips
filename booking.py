@@ -84,9 +84,11 @@ def booking_train(bookinfo):
         tickey_situation = soldout
 
     except:
-
-        driver.get_screenshot_as_file('rebook.jpg')
-        driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+        try: 
+            driver.get_screenshot_as_file('rebook.jpg')
+            driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
+        except:
+            tickey_situation = 'stop'
 
         time.sleep(3)
         driver.get_screenshot_as_file('infos.jpg')
