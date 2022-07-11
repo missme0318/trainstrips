@@ -55,18 +55,18 @@ def booking_train(bookinfo):
  
     start = driver.find_element(By.ID, 'startStation')
     start.send_keys(startwords)
-
-    end = driver.find_element(By.ID, 'endStation')
-    end.send_keys(endwords)
-
-    date = driver.find_element(By.ID,'rideDate1')
-    date.clear()
-    date.send_keys(ridedatebook)
-
-    trips = driver.find_element(By.ID, 'trainNoList1')
-    trips.send_keys(tripsnums)
-
     try: 
+        end = driver.find_element(By.ID, 'endStation')
+        end.send_keys(endwords)
+
+        date = driver.find_element(By.ID,'rideDate1')
+        date.clear()
+        date.send_keys(ridedatebook)
+
+        trips = driver.find_element(By.ID, 'trainNoList1')
+        trips.send_keys(tripsnums)
+
+
         driver.find_element(By.ID, 'g-recaptcha-response')
         driver.execute_script(
             "document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
