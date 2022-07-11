@@ -2,6 +2,6 @@ line-bot-sdk==2.2.1
 gunicorn
 flask
 selenium
-2captcha-python
-Pillow
-django-recaptcha
+2captcha-python==1.1.2
+Pillow==9.2.0
+django-recaptcha==3.0.0
