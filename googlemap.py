@@ -50,6 +50,10 @@ def input_wanted(search):
     situ = ''
     try:
         for i in website:
+            chromeOption = webdriver.ChromeOptions()
+            chromeOption.add_argument("--lang=zh-CN.UTF8")
+            chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+            driver = webdriver.Chrome(chrome_options=chromeOption)
             driver.get(i)
             try:
                 address = driver.find_element(By.CLASS_NAME, 'm6QErb .rogA2c').text
