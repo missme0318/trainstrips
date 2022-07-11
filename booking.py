@@ -70,15 +70,14 @@ def booking_train(bookinfo):
     trips.send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
-    try:
-        driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
-        time.sleep(3)
-    
-        driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+    time.sleep(3)
 
-        time.sleep(3)
-        
+    driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+
+    time.sleep(3)
+    try:   
         try:
             soldout= '均無符合條件車次，請調整訂票條件'
             soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
