@@ -52,40 +52,41 @@ def booking_train(bookinfo):
     
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
-    
+
 
     start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
     start.send_keys(startwords)
+
+    end = driver.find_element(By.ID, 'endStation')
+    end.send_keys(endwords)
+
+    date = driver.find_element(By.ID,'rideDate1')
+    date.clear()
+    date.send_keys(ridedatebook)
+
+    trips = driver.find_element(By.ID, 'trainNoList1')
+    trips.send_keys(tripsnums)
+
+
+    driver.find_element(By.ID, 'g-recaptcha-response')
+    driver.execute_script(
+        "document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+
+    time.sleep(3)
+
+    driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+
+    time.sleep(3)
+
     try:
-        end = driver.find_element(By.ID, 'endStation')
-        end.send_keys(endwords)
+        soldout= '均無符合條件車次，請調整訂票條件'
+        soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
+        tickey_situation = soldout
 
-        date = driver.find_element(By.ID,'rideDate1')
-        date.clear()
-        date.send_keys(ridedatebook)
+    except:
 
-        trips = driver.find_element(By.ID, 'trainNoList1')
-        trips.send_keys(tripsnums)
-
-
-        driver.find_element(By.ID, 'g-recaptcha-response')
-        driver.execute_script(
-            "document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-
-        time.sleep(3)
-
-        driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-
-        time.sleep(3)
-
+        # driver.get_screenshot_as_file('static/rebook.jpg')
         try:
-            soldout= '均無符合條件車次，請調整訂票條件'
-            soldout in driver.find_element(By.XPATH, '//*[@id="content"]/div[2]/h4/strong').text
-            tickey_situation = soldout
-
-        except:
-
-            # driver.get_screenshot_as_file('static/rebook.jpg')
             driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
 
             time.sleep(3)
@@ -105,13 +106,11 @@ def booking_train(bookinfo):
             
             tickey_situation = f'訂購完成！{booking_code}\n{limittime}'
             # driver.get_screenshot_as_file('static/finish.jpg')
+        except:
+            tickey_situation = 'non-start'
 
         driver.quit()
-    except Exception as e:
-        e = str(e)
-        tickey_situation = e
-    except:
-        tickey_situation = 'non-start'
 
+    
     return tickey_situation
 
