@@ -87,7 +87,7 @@ def booking_train(bookinfo):
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         tickey_situation = errormsg
 
-    except:
+    else:
         driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()
         
         time.sleep(3)
