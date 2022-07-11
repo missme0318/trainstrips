@@ -8,7 +8,7 @@ from PIL import Image
 from twocaptcha import TwoCaptcha
 
 import time
-# import os
+import os
 
 
 
