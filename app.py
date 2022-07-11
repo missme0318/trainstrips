@@ -55,20 +55,20 @@ def handle_message(event):
 
 
     if msg in ['hi', 'Hi!']:
-        r = '功能：\n1.查詢火車車次\n2.訂購火車車票\n3.取消火車票\n4.尋找美食'
+        r = '功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食'
     elif '查詢車次' in msg:
-        r = '請依格式輸入起終點/日期/時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
-    elif '查詢' in msg:
+        r = '請依格式輸入起終點.日期.時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
+    elif '查詢\n' in msg:
         tripsinfo = msg.replace('查詢\n','')
         r = search_trips(tripsinfo)
     elif '訂購車票' in msg:
-        r = '請依格式輸入ID/起終點/日期/車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
-    elif '訂購' in msg:
+        r = '請依格式輸入ID.起終點.日期.車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
+    elif '訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
         r = booking_train(bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
-    elif '取消' in msg:
+    elif '取消\n' in msg:
         cancelinfo = msg.replace('取消\n','')
         r = cancel_train(cancelinfo)
     elif '尋找美食' in msg:
