@@ -30,13 +30,13 @@ def cancel_train(cancelinfo):
 
     cancelclick2 = driver.find_element(By.XPATH, '/html/body/div[6]/div[2]/div/div/div/div/div/div/div/div[4]/button[2]').click()
 
-    driver.get_screenshot_as_file('cancel_finish3.jpe')
+    #driver.get_screenshot_as_file('cancel_finish3.jpe')
 
     cancelfinish1 = driver.find_element(By.XPATH, '//*[@id="content"]/div[4]/div[1]/dl/dd').text
     cancelfinish1 = cancelfinish1.replace('已取消 ', '')
     cancelfinish2 = driver.find_element(By.XPATH, '//*[@id="content"]/div[5]/div/div[1]/div[1]').text
     
-    finish_text = (f'{cancelfinish2}\n{cancelfinish1}')
+    finish_text = f'{cancelfinish2}\n{cancelfinish1}'
     
     driver.quit()
     
