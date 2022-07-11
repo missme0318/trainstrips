@@ -53,44 +53,44 @@ def handle_message(event):
 
     #     return
 
-    if '測試圖片' in msg:
-        image_message = ImageSendMessage(
-            original_content_url='./static/cancel_finish.jpe',
-            preview_image_url='./static/cancel_finish.jpe')
-        line_bot_api.reply_message(event.reply_token, image_message)
-    else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
-
-
-    # if msg in ['hi', 'Hi!']:
-    #     r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
-    # elif '查詢車次' in msg:
-    #     r = '請依格式輸入起終點.日期.時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
-    # elif '查詢\n' in msg:
-    #     tripsinfo = msg.replace('查詢\n','')
-    #     r = search_trips(tripsinfo)
-    # elif '訂購車票' in msg:
-    #     r = '請依格式輸入ID.起終點.日期.車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
-    # elif '訂購\n' in msg:
-    #     bookinfo = msg.replace('訂購\n','')
-    #     r = booking_train(bookinfo)
-    # elif '取消車票' in msg:
-    #     r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
-    #     imgs = 
-    # elif '取消\n' in msg:
-    #     cancelinfo = msg.replace('取消\n','')
-    #     r = cancel_train(cancelinfo)
-    # elif '尋找美食' in msg:
-    #     r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
-    # elif '尋找' in msg:
-    #     search = msg.replace('尋找','')
-    #     r = delicious(search)
+    # if '測試圖片' in msg:
+    #     image_message = ImageSendMessage(
+    #         original_content_url='./static/cancel_finish.jpe',
+    #         preview_image_url='./static/cancel_finish.jpe')
+    #     line_bot_api.reply_message(event.reply_token, image_message)
     # else:
-    #     r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
+    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text=r))
+
+    if msg in ['hi', 'Hi!']:
+        r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
+    elif '查詢車次' in msg:
+        r = '請依格式輸入起終點.日期.時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
+    elif '查詢\n' in msg:
+        tripsinfo = msg.replace('查詢\n','')
+        r = search_trips(tripsinfo)
+    elif '訂購車票' in msg:
+        r = '請依格式輸入ID.起終點.日期.車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
+    elif '訂購\n' in msg:
+        bookinfo = msg.replace('訂購\n','')
+        r = booking_train(bookinfo)
+    elif '取消車票' in msg:
+        r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
+        imgs = 
+    elif '取消\n' in msg:
+        cancelinfo = msg.replace('取消\n','')
+        r = cancel_train(cancelinfo)
+    elif '尋找美食' in msg:
+        r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
+    elif '尋找' in msg:
+        search = msg.replace('尋找','')
+        r = delicious(search)
+    else:
+        r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
 
 
 if __name__ == "__main__":
