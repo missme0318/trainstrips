@@ -18,4 +18,4 @@ def solveRecaptha22():
         print(e)
 
     else:
-        return (result['code'])
+        return result['code']
