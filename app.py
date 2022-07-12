@@ -66,7 +66,7 @@ def handle_message(event):
     elif '訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
         code = solveRecaptha()
-        r = booking_train(code, bookinfo)
+        r = booking_train(str(code), bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
     elif '取消\n' in msg:
