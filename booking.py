@@ -71,7 +71,7 @@ def booking_train(code, bookinfo):
 
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     
-    time.sleep(1)
+    time.sleep(2)
 
     tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
     paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
