@@ -5,7 +5,7 @@ def delicious(sel):
     count=0
     content=''
     for i in range(1,3):
-        url='https://ifoodie.tw/explore/高雄市/list/'+sel+'?opening=true&sortby=popular&page='+str(i)
+        url='https://ifoodie.tw/explore/list/'+sel+'?opening=true&sortby=popular&page='+str(i)
         #print('Start parsing pttHot....')
         response = requests.get(url)
         html_soup = BeautifulSoup(response.text, 'html.parser')
