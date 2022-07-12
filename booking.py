@@ -17,7 +17,7 @@ def solveRecaptha(sitekey, pageurl):
     solver = TwoCaptcha(api_key)
 
     try:
-        result = solver.recaptcha(sitekey=sitekey,url=pageurl,version="v2")
+        result = solver.recaptcha(sitekey=sitekey,url=pageurl)
 
     except Exception as e:
         print(e)
