@@ -71,10 +71,12 @@ def booking_train(code, bookinfo):
 
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     
-    time.sleep(2)
-
-    tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
-    paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-    ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+    timle.sleep(2)
+    try:
+        tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
+        paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
+        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+    except:
+        ticket_situation = '資料有誤，請重新輸入'
 
     return ticket_situation
