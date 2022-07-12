@@ -74,7 +74,7 @@ def booking_train(code, bookinfo):
     try:
         tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = f'訂購完成！{tripsnum}'
-        driver.get_screenshot_as_file('static/finish.png')
+        # driver.get_screenshot_as_file('static/finish.png')
 
     except NoSuchElementException :
         ticket_situation = 'NoSuchElementException'
@@ -82,7 +82,7 @@ def booking_train(code, bookinfo):
     except:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         ticket_situation = errormsg
-        driver.get_screenshot_as_file('static/finish.png')
+        # driver.get_screenshot_as_file('static/finish.png')
     
     finally:
         driver.delete_all_cookies()
