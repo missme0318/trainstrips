@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import Select
 
 from searchtrips import search_trips
 from booking import booking_train, solveRecaptha
+from booking2 import booking_train2, solveRecaptha2
 from foods import delicious
 from cancel import cancel_train
 from recaptcha import solveRecaptha22
@@ -71,6 +72,9 @@ def handle_message(event):
     elif '訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
         r = solveRecaptha(bookinfo)
+    elif 't訂購\n' in msg:
+        bookinfo = msg.replace('訂購\n','')
+        r = solveRecaptha2(bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
     elif '取消\n' in msg:
