@@ -22,7 +22,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Ydb2/PPmtL0GbrhW84+TfO8nlWDjV2dTvCeSLrnhW0mA6efqIZ40zOlX1I7l47BrzXifLxD3pc5LEkQ7z0MtN4579ivGdoDK0QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
-code = solveRecaptha()
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -67,7 +67,7 @@ def handle_message(event):
     elif '訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
         # code = solveRecaptha()
-        r = booking_train(str(code), bookinfo)
+        r = booking_train(solveRecaptha(), bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
     elif '取消\n' in msg:
