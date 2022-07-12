@@ -13,7 +13,7 @@ from searchtrips import search_trips
 from booking import booking_train, solveRecaptha
 from foods import delicious
 from cancel import cancel_train
-import base64
+
 
 app = Flask(__name__)
 
@@ -38,13 +38,6 @@ def callback():
         abort(400)
 
     return 'OK'
-
-def return_img_stream(imd_path):
-    img_stream = ''
-    with open(imd_path, 'rb') as img_f:
-        img_stream = img_f.read()
-        imf_stream = base64.b64encode(img_stream).decode()
-    return img_stream
 
 
 @handler.add(MessageEvent, message=TextMessage)

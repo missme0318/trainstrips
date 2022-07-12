@@ -15,9 +15,7 @@ def solveRecaptha(sitekey, pageurl):
     solver = TwoCaptcha(api_key)
 
     try:
-        result = solver.recaptcha(
-            sitekey=sitekey,
-            url=pageurl)
+        result = solver.recaptcha(sitekey=sitekey,url=pageurl)
 
     except Exception as e:
         print(e)
@@ -80,6 +78,7 @@ def booking_train(bookinfo):
         driver.get_screenshot_as_file('./static/finish.jpg')
             
     except:
+        time.sleep(2)
         ripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = '訂購完成！'+str(tripsnum)
         driver.get_screenshot_as_file('./static/finish.jpg')
