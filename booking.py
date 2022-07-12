@@ -47,36 +47,38 @@ def booking_train(code, bookinfo):
     driver = webdriver.Chrome(chrome_options=chromeOption)
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-    
-    idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
-    idlocate.send_keys(IDnum)
+    try: 
+        idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
+        idlocate.send_keys(IDnum)
 
-    start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
-    start.send_keys(startwords)
+        start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
+        start.send_keys(startwords)
 
-    end = driver.find_element(By.ID, 'endStation')
-    end.send_keys(endwords)
+        end = driver.find_element(By.ID, 'endStation')
+        end.send_keys(endwords)
 
-    date = driver.find_element(By.ID,'rideDate1')
-    date.clear()
-    date.send_keys(ridedatebook)
+        date = driver.find_element(By.ID,'rideDate1')
+        date.clear()
+        date.send_keys(ridedatebook)
 
-    trips = driver.find_element(By.ID, 'trainNoList1')
-    trips.send_keys(tripsnums)
+        trips = driver.find_element(By.ID, 'trainNoList1')
+        trips.send_keys(tripsnums)
 
-    driver.find_element(By.ID, 'g-recaptcha-response')
-    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+        driver.find_element(By.ID, 'g-recaptcha-response')
+        driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
-    time.sleep(2)
+        time.sleep(2)
 
-    driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-    
-    timle.sleep(2)
-    try:
-        tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
-        paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+        driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+        
+        timle.sleep(2)
+        try:
+            tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
+            paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
+            ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+        except:
+            ticket_situation = '資料有誤，請重新輸入'
     except:
-        ticket_situation = '資料有誤，請重新輸入'
+        ticket_situation = 'idlocate'
 
     return ticket_situation
