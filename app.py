@@ -17,12 +17,18 @@ from whitenoise import WhiteNoise
 # pip install whitenoise
 # http://whitenoise.evans.io/en/stable/
 
-
-
+from flask import session
+from flask_session import Session 
 import time
+
+
 
 app = Flask(__name__)
 app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
+app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 
 line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Ydb2/PPmtL0GbrhW84+TfO8nlWDjV2dTvCeSLrnhW0mA6efqIZ40zOlX1I7l47BrzXifLxD3pc5LEkQ7z0MtN4579ivGdoDK0QdB04t89/1O/w1cDnyilFU=')
