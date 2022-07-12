@@ -44,8 +44,8 @@ def handle_message(event):
     msg = event.message.text
     if '貼圖' in msg:
         image_message = ImageSendMessage(
-            original_content_url='./static/cancel_finish.png',
-            preview_image_url='./static/cancel_finish.png')
+            original_content_url='/app/.chromedriver/bin/chromedriver/static/cancel_finish.png',
+            preview_image_url='/app/.chromedriver/bin/chromedriver/static/cancel_finish.png')
         line_bot_api.reply_message(event.reply_token, image_message)
 
         return
