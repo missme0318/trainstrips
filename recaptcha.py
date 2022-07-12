@@ -1,7 +1,7 @@
 from twocaptcha import TwoCaptcha
 import os
 
-def solveRecaptha():
+def solveRecaptha22():
     pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
     sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
 
@@ -18,4 +18,4 @@ def solveRecaptha():
         print(e)
 
     else:
-        return result['code']
+        return (result['code'])
