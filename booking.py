@@ -3,28 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
-# from selenium.webdriver.support.ui import WebDriverWait
-from PIL import Image
-from twocaptcha import TwoCaptcha
-
-import time
-import os
-def solveRecaptha(sitekey, pageurl):
-    api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
-
-    solver = TwoCaptcha(api_key)
-
-    try:
-        result = solver.recaptcha(sitekey=sitekey,url=pageurl)
-
-    except Exception as e:
-        print(e)
-
-    else:
-        return result
-    
-
-# 訂票
+from recaptha import solveRecaptha
+import time    
 
 def booking_train(bookinfo):
 
@@ -47,7 +27,7 @@ def booking_train(bookinfo):
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
     #driver.maximize_window()
 
-    # driver.set_window_size(1600,1024)
+    driver.set_window_size(1600,1024)
 
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
