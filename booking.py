@@ -10,7 +10,9 @@ import time
 import os
 import base64
 
-def solveRecaptha(sitekey, pageurl):
+
+
+def solveRecaptha(sitekey, pageurl, bookinfo):
     
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
     solver = TwoCaptcha(api_key)
@@ -23,9 +25,10 @@ def solveRecaptha(sitekey, pageurl):
 
     else:
         code = result['code']
-        return code
+        booking_train(code, bookinfo)
 
-def booking_train(bookinfo):
+
+def booking_train(code, bookinfo):
 
     IDnum = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
@@ -33,10 +36,8 @@ def booking_train(bookinfo):
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
 
-    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
     code = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-    
+
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
