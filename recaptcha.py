@@ -2,20 +2,22 @@ from twocaptcha import TwoCaptcha
 import os
 import base64
 
-def solveRecaptha22():
-
+def solveRecaptha22(sitekey, pageurl):
     train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
     train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
 
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
+
     solver = TwoCaptcha(api_key)
 
     try:
-        result = solver.recaptcha(sitekey=train_booking_pageurl, url=train_booking_sitekey)
+        result = solver.recaptcha(
+            sitekey=sitekey,
+            url=pageurl)
 
     except Exception as e:
         print(e)
 
     else:
-        code = result['code']
-        return code
+        return result['code']
+        
