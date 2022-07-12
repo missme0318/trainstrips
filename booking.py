@@ -75,12 +75,12 @@ def booking_train(bookinfo):
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         ticket_situation = errormsg
-        driver.get_screenshot_as_file('./static/finish.jpg')
+        # driver.get_screenshot_as_file('./static/finish.jpg')
             
     except:
         ripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = '訂購完成！'+str(tripsnum)
-        driver.get_screenshot_as_file('./static/finish.jpg')
+        # driver.get_screenshot_as_file('./static/finish.jpg')
 
         try:   
             driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
@@ -100,7 +100,7 @@ def booking_train(bookinfo):
             limittime = limittime.replace('您可以透過以下方式取票，','')
 
             ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
-            driver.get_screenshot_as_file('./static/finish.jpg')
+            # driver.get_screenshot_as_file('./static/finish.jpg')
 
         except:
             ticket_situation = '訂購完成！'+str(tripsnum)
