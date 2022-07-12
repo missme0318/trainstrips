@@ -42,6 +42,7 @@ def cancel_train(cancelinfo):
         if '已取消' in finishcancel:
             finish_text = finishcancel
         driver.get_screenshot_as_file('./static/cancel_finish.jpg')
+        
     driver.delete_all_cookies()
     driver.quit()
 
