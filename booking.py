@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
-# from selenium.webdriver.support.ui import 
 from selenium.webdriver.support import expected_conditions as EC
 from twocaptcha import TwoCaptcha
 
@@ -14,7 +13,6 @@ import base64
 def solveRecaptha(sitekey, pageurl):
     
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
-
     solver = TwoCaptcha(api_key)
 
     try:
@@ -27,11 +25,7 @@ def solveRecaptha(sitekey, pageurl):
         code = result['code']
         return code
 
-    
-
-# 訂票
-
-def booking_train(code, bookinfo):
+def booking_train(bookinfo):
 
     IDnum = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
@@ -49,10 +43,7 @@ def booking_train(code, bookinfo):
     driver = webdriver.Chrome(chrome_options=chromeOption)
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
-    #driver.maximize_window()
-
-    # driver.set_window_size(1600,1024)
-
+    
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
 
@@ -72,49 +63,28 @@ def booking_train(code, bookinfo):
     driver.find_element(By.ID, 'g-recaptcha-response')
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
-    time.sleep(0)
+    time.sleep(2)
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         ticket_situation = errormsg
-        # driver.get_screenshot_as_file('./static/finish.jpg')
+        driver.get_screenshot_as_file('static/finish.jpg')
             
     except:
         ripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = f'訂購完成！{tripsnum}'
-
-        # paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        # ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
-        # driver.get_screenshot_as_file('./static/finish.jpg')
-
-        # try:   
-        #     driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button').click()  
-        #     # time.sleep(2)
-            
+        driver.get_screenshot_as_file('static/finish.jpg')
         
-        #     payment = driver.find_element(By.ID, 'paymentMethod')
-        #     cash = Select(payment).options[1]
-        #     Select(payment).select_by_visible_text(cash.text)
+    finally:
+        driver.delete_all_cookies()
+        driver.quit()  
 
-        #     # time.sleep(2)
-
-        #     driver.find_element(By.XPATH, '//*[@id="order"]/div[3]/button[2]').click()
-
-        #     booking_code = driver.find_element(By.XPATH, '//*[@id="content"]/div[3]/div[2]/div[1]/div').text
-        #     limittime = driver.find_element(By.XPATH, '//*[@id="content"]/div[6]/div/p').text
-        #     limittime = limittime.replace('您可以透過以下方式取票，','')
-
-        #     ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
-        #     # driver.get_screenshot_as_file('./static/finish.jpg')
-
-        # except:
-        #     ticket_situation = '訂購完成！'+str(tripsnum)
-    driver.delete_all_cookies()
-    driver.quit()
-
-    
-        
     return ticket_situation
+
+
+
+
+
 

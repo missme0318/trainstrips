@@ -13,10 +13,17 @@ from searchtrips import search_trips
 from booking import booking_train
 from foods import delicious
 from cancel import cancel_train
+from whitenoise import WhiteNoise
+# pip install whitenoise
+# http://whitenoise.evans.io/en/stable/
+
+
 
 import time
 
 app = Flask(__name__)
+app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
+
 
 line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Ydb2/PPmtL0GbrhW84+TfO8nlWDjV2dTvCeSLrnhW0mA6efqIZ40zOlX1I7l47BrzXifLxD3pc5LEkQ7z0MtN4579ivGdoDK0QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
