@@ -34,13 +34,14 @@ def solveRecaptha(bookinfo):
 
 
 def booking_train(code, bookinfo):
-    try: 
-        IDnum = bookinfo.split('\n')[0]
-        startwords = bookinfo.split('\n')[1]
-        endwords = bookinfo.split('\n')[2]
-        ridedatebook = bookinfo.split('\n')[3]
-        tripsnums = bookinfo.split('\n')[4]
 
+    IDnum = bookinfo.split('\n')[0]
+    startwords = bookinfo.split('\n')[1]
+    endwords = bookinfo.split('\n')[2]
+    ridedatebook = bookinfo.split('\n')[3]
+    tripsnums = bookinfo.split('\n')[4]
+    
+    try:    
         chromeOption = webdriver.ChromeOptions()
         chromeOption.add_argument("--lang=zh-CN.UTF8")
         chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
