@@ -13,6 +13,7 @@ from searchtrips import search_trips
 from booking import booking_train
 from foods import delicious
 from cancel import cancel_train
+from recaptcha import solveRecaptha22
 from whitenoise import WhiteNoise
 # pip install whitenoise
 # http://whitenoise.evans.io/en/stable/
@@ -80,6 +81,8 @@ def handle_message(event):
     elif '尋找' in msg:
         search = msg.replace('尋找','')
         r = delicious(search)
+    elif 'code' == msg:
+        r = solveRecaptha22()
     else:
         r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
 
