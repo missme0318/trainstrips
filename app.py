@@ -18,7 +18,8 @@ from whitenoise import WhiteNoise
 # http://whitenoise.evans.io/en/stable/
 
 from flask import session
-from flask_session import Session 
+from flask_session import Session
+# pip install Flask-Session
 import time
 
 
