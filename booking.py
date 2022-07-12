@@ -105,10 +105,9 @@ def booking_train(bookinfo):
 
         # except:
         #     ticket_situation = '訂購完成！'+str(tripsnum)
-    driver.delete_all_cookies()
-    driver.quit()
-
-    
+    finally:
+        driver.delete_all_cookies()
+        driver.quit()
         
     return ticket_situation
 
