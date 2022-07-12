@@ -72,15 +72,18 @@ def booking_train(code, bookinfo):
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
     try:
-        errormsg = driver.find_element(By.ID, 'errorDiv').text
-        ticket_situation = errormsg
-        driver.get_screenshot_as_file('static/finish.png')
-
-    except:
         tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = f'訂購完成！{tripsnum}'
         driver.get_screenshot_as_file('static/finish.png')
 
+    except NoSuchElementException :
+        ticket_situation = 'NoSuchElementException'
+
+    except:
+        errormsg = driver.find_element(By.ID, 'errorDiv').text
+        ticket_situation = errormsg
+        driver.get_screenshot_as_file('static/finish.png')
+    
     finally:
         driver.delete_all_cookies()
         driver.quit()
