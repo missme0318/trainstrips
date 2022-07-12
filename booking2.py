@@ -49,8 +49,9 @@ def booking_train2(code, bookinfo):
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
 
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
-    idlocate.send_keys(IDnum)
     try:
+        idlocate.send_keys(IDnum)
+
         start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
         start.send_keys(startwords)
 
@@ -71,7 +72,7 @@ def booking_train2(code, bookinfo):
 
         driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
         
-        timle.sleep(2)
+        time.sleep(2)
         try:
             tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
             paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
