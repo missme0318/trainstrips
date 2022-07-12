@@ -73,8 +73,9 @@ def booking_train(bookinfo):
     time.sleep(2)
     
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-    driver.get_screenshot_as_file('./static/finish.jpg')
+    ticket_situation = 'nonstart'
     try:
+        driver.get_screenshot_as_file('./static/finish.jpg')
         tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         ticket_situation = '訂購完成！'+str(tripsnum)
     except:
