@@ -77,7 +77,4 @@ def booking_train(code, bookinfo):
     paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
     ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
 
-    driver.delete_all_cookies()
-    driver.quit()
-
     return ticket_situation
