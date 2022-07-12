@@ -22,6 +22,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Ydb2/PPmtL0GbrhW84+TfO8nlWDjV2dTvCeSLrnhW0mA6efqIZ40zOlX1I7l47BrzXifLxD3pc5LEkQ7z0MtN4579ivGdoDK0QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
+code = solveRecaptha()
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -87,4 +88,3 @@ def handle_message(event):
 
 if __name__ == "__main__":
     app.run()
-    code = solveRecaptha()
