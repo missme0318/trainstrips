@@ -15,7 +15,7 @@ import base64
 
 # 訂票
 
-def booking_train(bookinfo):
+def booking_train(code, bookinfo):
 
     IDnum = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
