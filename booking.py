@@ -26,8 +26,10 @@ def booking_train(bookinfo):
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
     #driver.maximize_window()
-
-    driver.set_window_size(1600,1024)
+    try:
+        driver.set_window_size(1600,1024)
+    except:
+        ticket_situation = 'nosize'
 
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
@@ -54,13 +56,13 @@ def booking_train(bookinfo):
 
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
-        ticket_situation = errormsg
+        ticket_situation += errormsg
         # driver.get_screenshot_as_file('./static/finish.jpg')
             
     except:
         ripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+        ticket_situation += f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
         # driver.get_screenshot_as_file('./static/finish.jpg')
 
         # try:   
@@ -88,7 +90,7 @@ def booking_train(bookinfo):
     finally:
         driver.delete_all_cookies()
         driver.quit()
-        ticket_situation = 'ohno'
+        ticket_situation += 'ohno'
         
     return ticket_situation
 
