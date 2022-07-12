@@ -33,11 +33,10 @@ def booking_train(bookinfo):
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
 
-    # train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    # train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-    # code = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
-    code='03ANYolquh_n3s2EW4jgVEOpESMAqQt30QcwV8sqlvVGy8JIfktkBW2EKvONg1BfwKgjmRTOjpn25wzVXB1ZNrtGCM0tUsWS_TUreDoC_602iudO_oXMd5HVeUM_8pJyt4-B4Hz7JYCJsYuXY4Gzf2fGP4JgK9WPpu5Yf0cILniMiNuPITKgNYGpNVumkcnxxoItKD-Fr2eTk5HJnU87oVfJovyS-2_1hQ1o_wBpY_P95_UaNnBI45HPkk2L1tdFauek8IGei2cD0majjTscY51pG69wqA3-GJPEh8itdsc0kqy-CUCBwg-ur_rrghzDQ-IO6AmYjZJkw4BSD5wZfMTkmBTmjdDwe__yzXkngA9cMKFZG0Tr48AYtoNKb8Toi6by-uSomMIPfBTKCGQO6CyESHSeGjF-rG2A0803tQZc95J9JX40xMGhk99vDsZJ2_nqc16cAoxWozTnOFHu1WOLfKpOhiJgvKEFkvOr0aenA-IJXen1JoB7lLYafv_YDpmnrTuJesxdlU30iYBEKWMW2e5PtCyIrlC1PSjz_0TSwtFULc2y8Ssvg_6qvXuXFNklhtuAWdMseKnVM2CpXNWFR7sMCEQ_Mbfly9O-3Rnaian2Ke2fYDQtaKE45UOFiB1ScwtxgfWKpjw8eQ5FzWUo5c4lV873-x6y4_aKQ1XvMKYj5G21DfcrfW8gqtmN7A2onKRn0Rp7IN8os2L-Koy0i3qNc952gl0OTJgmNpVA3JDDS7nPb4DincxnrkNE6aeF7pTFuIcsm0FFy_ofVV9-oOhUhkXTCSi7gzn0nnACMHEb63tCia3jW4NcX-W6OxHDCxLS4uSjLAUHbzUJuGq_6zt-2r1gKZ21IW4lxA-m4Y6o6rtNf6zdk0meLorAaKZAAdTh4O9wSYPWE5n-TybXf6T8ParDZPgBhGB5eIvDL9zSJuEzafg1afq6MBjM-HO7pI0ctAURRV5jj0JPxk_UOCsAM9sWYVWIB_WVP9Cc0erwqT6UAa_nd1d3AkdHtoWsbU2347quXggdc79khMpcbwu_aqDtwwTzLAehCmFuxG__UQLYS37QdR4iAbtRivhUVC-KdaT3OSXK6ZGQA-OG8V9gvAABlSg4H_4KYHltsE6J-4Qr45XfTkl5n6Fpe6s0VuyVNLd3jw8gqMtdZXUjU3W_JVgF6yUWVRKlnOZv1tVAHPA-gpvGFfuaGs0XzcjLLFr_oRJSNoxVtqpj3yvR2w011m9Q0Mc3MnvS6gZbrCjShDuVTp0NeHL2LlhizomwY5PmOUPewrn-PI28fSIE2dJB78Xs74MrLLTnJPy9csQGXXLm9LOSAcD8BbFclbJXgC3svztklHxCCbF2iRg2iuGwf1YceN7Ct7zausdIWvNIpCRpj4Bi3eThf20r66NNEY_oWKocQMXBKix28N4DQM3QvCrmcQkKed02nkXuZ5afPh6cIZt43uQNY8yMVrmMX8KBMzJ07HF5vkINGgkWRE7KKoBnT-yHFtN_vvVW9p09A196xSX3d68xXaBcDMtttKIKu-NIAJG1EexGwN-0F93AHBxORKDiacxw5oiyf98Mac8RmJJDghJ5kPthMR7S3yd5W5xtCb'
-
+    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    code = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
+    
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
