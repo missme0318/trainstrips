@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import Select
 # from selenium.webdriver.support.ui import 
 from selenium.webdriver.support import expected_conditions as EC
 from twocaptcha import TwoCaptcha
+from recaptha import solveRecaptha
 
 import time
 import os
@@ -50,7 +51,7 @@ def booking_train(code, bookinfo):
     trips.send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
-    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + solveRecaptha() + "'")
 
     time.sleep(3)
     
