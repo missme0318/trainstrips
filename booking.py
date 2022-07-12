@@ -28,7 +28,9 @@ def solveRecaptha(bookinfo):
 
     else:
         code = result['code']
-        booking_train(code, bookinfo)
+        ticket_situation = booking_train(code, bookinfo)
+        
+    return ticket_situation
 
 
 def booking_train(code, bookinfo):

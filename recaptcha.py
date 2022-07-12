@@ -1,10 +1,9 @@
 from twocaptcha import TwoCaptcha
 import os
-import base64
 
-def solveRecaptha22(sitekey, pageurl):
-    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+def solveRecaptha():
+    pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
 
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
 
@@ -20,4 +19,3 @@ def solveRecaptha22(sitekey, pageurl):
 
     else:
         return result['code']
-        
