@@ -88,6 +88,7 @@ def booking_train(bookinfo):
     finally:
         driver.delete_all_cookies()
         driver.quit()
+        ticket_situation = 'ohno'
         
     return ticket_situation
 
