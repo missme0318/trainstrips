@@ -11,16 +11,14 @@ import time
 import os
 import base64
 
-def solveRecaptha():
-    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-
+def solveRecaptha(sitekey, pageurl):
+    
     api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
 
     solver = TwoCaptcha(api_key)
 
     try:
-        result = solver.recaptcha(sitekey=train_booking_sitekey,url=train_booking_pageurl)
+        result = solver.recaptcha(sitekey=sitekey, url=pageurl)
 
     except Exception as e:
         print(e)
@@ -40,6 +38,10 @@ def booking_train(code, bookinfo):
     endwords = bookinfo.split('\n')[2]
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
+
+    train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
+    train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
+    code = solveRecaptha(train_booking_sitekey, train_booking_pageurl)
 
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
@@ -68,7 +70,7 @@ def booking_train(code, bookinfo):
     trips.send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
-    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + solveRecaptha() + "'")
+    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
     time.sleep(3)
     
