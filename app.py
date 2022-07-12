@@ -10,10 +10,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 
 from searchtrips import search_trips
-# from booking import booking_train, solveRecaptha
+from booking import booking_train
 from foods import delicious
 from cancel import cancel_train
-# from recaptha import solveRecaptha
+from recaptha import solveRecaptha
 
 import time
 
