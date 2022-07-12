@@ -3,8 +3,28 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
-from recaptha import solveRecaptha
-import time    
+# from selenium.webdriver.support.ui import WebDriverWait
+from PIL import Image
+from twocaptcha import TwoCaptcha
+
+import time
+import os
+def solveRecaptha(sitekey, pageurl):
+    api_key = os.getenv('APIKEY_2CAPTCHA', '4bca3ca456af17b4be31f166e1ddb8aa')
+
+    solver = TwoCaptcha(api_key)
+
+    try:
+        result = solver.recaptcha(sitekey=sitekey,url=pageurl)
+
+    except Exception as e:
+        print(e)
+
+    else:
+        return result
+    
+
+# 訂票
 
 def booking_train(bookinfo):
 
@@ -26,10 +46,8 @@ def booking_train(bookinfo):
     
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
     #driver.maximize_window()
-    try:
-        driver.set_window_size(1600,1024)
-    except:
-        ticket_situation = 'nosize'
+
+    # driver.set_window_size(1600,1024)
 
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     idlocate.send_keys(IDnum)
@@ -56,13 +74,15 @@ def booking_train(bookinfo):
 
     try:
         errormsg = driver.find_element(By.ID, 'errorDiv').text
-        ticket_situation += errormsg
+        ticket_situation = errormsg
         # driver.get_screenshot_as_file('./static/finish.jpg')
             
     except:
         ripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
-        paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation += f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+        ticket_situation = f'訂購完成！{str(tripsnum)}'
+
+        # paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
+        # ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
         # driver.get_screenshot_as_file('./static/finish.jpg')
 
         # try:   
@@ -87,10 +107,10 @@ def booking_train(bookinfo):
 
         # except:
         #     ticket_situation = '訂購完成！'+str(tripsnum)
-    finally:
-        driver.delete_all_cookies()
-        driver.quit()
-        ticket_situation += 'ohno'
+    driver.delete_all_cookies()
+    driver.quit()
+
+    
         
     return ticket_situation
 
