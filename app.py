@@ -26,10 +26,6 @@ app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
 line_bot_api = LineBotApi('cBwUwzLyXqDhFhdsG/cglur32QRiBgbAi/3Xq3eby34MUg1zcQi2Ydb2/PPmtL0GbrhW84+TfO8nlWDjV2dTvCeSLrnhW0mA6efqIZ40zOlX1I7l47BrzXifLxD3pc5LEkQ7z0MtN4579ivGdoDK0QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('79a8d7930208c29ff1601c21c2683c37')
 
-train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
-train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
-
-
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -73,7 +69,7 @@ def handle_message(event):
         r = '請依格式輸入ID.起終點.日期.車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
     elif '訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
-        r = solveRecaptha(train_booking_sitekey, train_booking_pageurl, bookinfo)
+        r = solveRecaptha(bookinfo)
     elif '取消車票' in msg:
         r = '請依格式輸入ID/車次\n例如：\n\n取消\nSP223210741\n554'
     elif '取消\n' in msg:
