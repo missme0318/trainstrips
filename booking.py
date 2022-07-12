@@ -81,8 +81,7 @@ def booking_train(bookinfo):
         errormsg = driver.find_element(By.ID, 'errorDiv').text
         ticket_situation = errormsg
         driver.get_screenshot_as_file('./static/finish.jpg')
-        driver.delete_all_cookies()
-        driver.quit()
+        
 
     except:
     
@@ -103,8 +102,9 @@ def booking_train(bookinfo):
 
         ticket_situation = f'訂購完成！{booking_code}\n{limittime}'
         driver.get_screenshot_as_file('./static/finish.jpg')
-        driver.delete_all_cookies()
-        driver.quit()
+        
+    driver.delete_all_cookies()
+    driver.quit()
 
     
         
