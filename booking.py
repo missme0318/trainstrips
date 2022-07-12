@@ -105,7 +105,7 @@ def booking_train(bookinfo):
             driver.get_screenshot_as_file('./static/finish.jpg')
 
         except:
-            ticket_situation = '訂購完成！！'+str(tripsnum)
+            ticket_situation = '訂購完成！'+str(tripsnum)
     driver.delete_all_cookies()
     driver.quit()
 

@@ -13,6 +13,7 @@ from searchtrips import search_trips
 from booking import booking_train, solveRecaptha
 from foods import delicious
 from cancel import cancel_train
+import base64
 
 app = Flask(__name__)
 
@@ -38,14 +39,21 @@ def callback():
 
     return 'OK'
 
+def return_img_stream(imd_path):
+    img_stream = ''
+    with open(imd_path, 'rb') as img_f:
+        img_stream = img_f.read()
+        imf_stream = base64.b64encode(img_stream).decode()
+    return img_stream
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
     if '貼圖' in msg:
         image_message = ImageSendMessage(
-            original_content_url='/app/.chromedriver/bin/chromedriver/static/cancel_finish.png',
-            preview_image_url='/app/.chromedriver/bin/chromedriver/static/cancel_finish.png')
+            original_content_url = return_img_stream('./static/cancel_finish.png'),
+            preview_image_url= return_img_stream('./static/cancel_finish.png'))
         line_bot_api.reply_message(event.reply_token, image_message)
 
         return
