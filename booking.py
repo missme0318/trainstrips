@@ -41,31 +41,31 @@ def booking_train(code, bookinfo):
     ridedatebook = bookinfo.split('\n')[3]
     tripsnums = bookinfo.split('\n')[4]
 
-        
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
     driver = webdriver.Chrome(chrome_options=chromeOption)
 
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
+
     
-    try: 
-        idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
-        idlocate.send_keys(IDnum)
+    idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
+    idlocate.send_keys(IDnum)
 
-        start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
-        start.send_keys(startwords)
+    start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
+    start.send_keys(startwords)
 
-        end = driver.find_element(By.ID, 'endStation')
-        end.send_keys(endwords)
+    end = driver.find_element(By.ID, 'endStation')
+    end.send_keys(endwords)
 
-        date = driver.find_element(By.ID,'rideDate1')
-        date.clear()
-        date.send_keys(ridedatebook)
+    date = driver.find_element(By.ID,'rideDate1')
+    date.clear()
+    date.send_keys(ridedatebook)
 
-        trips = driver.find_element(By.ID, 'trainNoList1')
-        trips.send_keys(tripsnums)
-
+    trips = driver.find_element(By.ID, 'trainNoList1')
+    trips.send_keys(tripsnums)
+    
+    try:    
         driver.find_element(By.ID, 'g-recaptcha-response')
         driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
 
