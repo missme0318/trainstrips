@@ -67,7 +67,7 @@ def booking_train2(bookinfo):
         driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
         time.sleep(2)
-        ticket_situation = f'訂購完成！{str(tripsnum)}'
+        ticket_situation = f'進入最後一頁!'
         
         try:
             tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
