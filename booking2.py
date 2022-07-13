@@ -81,6 +81,6 @@ def booking_train2(code, bookinfo):
         except:
             ticket_situation = '資料有誤，請重新輸入'
     except:
-        ticket_situation = 'idlocate'
+        ticket_situation = 'idlocate2'
 
     return ticket_situation
