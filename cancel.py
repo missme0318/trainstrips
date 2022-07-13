@@ -25,9 +25,9 @@ def cancel_train(cancelinfo):
     cancelticketnum.send_keys(ticketnum)
 
     checkout = driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[7]/button').click()
+    
+    cancelclick = driver.find_element(By.ID, 'cancel').click()
     try:
-        cancelclick = driver.find_element(By.ID, 'cancel').click()
-
         cancelclick2 = driver.find_element(By.XPATH, '/html/body/div[6]/div[2]/div/div/div/div/div/div/div/div[4]/button[2]').click()
 
         driver.get_screenshot_as_file('./static/cancel_finish.png')
