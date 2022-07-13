@@ -38,10 +38,17 @@ def booking_train2(bookinfo):
     ridedatebook = bookinfo.split('\n')[3]
     trips = bookinfo.split('\n')[4]
 
-    chromeOption = webdriver.ChromeOptions()
-    chromeOption.add_argument("--lang=zh-CN.UTF8")
-    chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
-    driver = webdriver.Chrome(chrome_options=chromeOption)
+    # chromeOption = webdriver.ChromeOptions()
+    # chromeOption.add_argument("--lang=zh-CN.UTF8")
+    # chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
+    # driver = webdriver.Chrome(chrome_options=chromeOption)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless") #無頭模式
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
 
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
 
