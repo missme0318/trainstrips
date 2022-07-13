@@ -79,7 +79,7 @@ def booking_train2(bookinfo):
     try:
         tripsacu = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation = f'訂購完成！{str(tripsacu)}\n請於{paidtime}'
+        ticket_situation = f'訂購完成！{str(tripsacu)}\n請於{str(paidtime)}'
 
         time.slepp(5)
     except:
