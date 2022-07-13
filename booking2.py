@@ -56,11 +56,12 @@ def booking_train2(bookinfo):
     driver.find_element(By.ID, 'trainNoList1').send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
-    try:
-        code = solveRecaptha2()
-       
-        driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-            
+    
+    code = solveRecaptha2()
+   
+    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+    
+    try:        
         time.sleep(3)
 
         driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
@@ -78,5 +79,5 @@ def booking_train2(bookinfo):
             ticket_situation = '資料有誤，請重新輸入'
     except:
         ticket_situation = 'Recaptha'
-        
+
     return ticket_situation
