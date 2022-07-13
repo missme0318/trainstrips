@@ -5,19 +5,18 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 import re
-import sys
 
 def cancel_train(cancelinfo):
 
     idnum = cancelinfo.split('\n')[0]
     ticketnum = cancelinfo.split('\n')[1]
 
-    idcorrect = re.fullmatch(r'[A-Za-z](\d{9})',idnum).group()
+    idcorrect = re.fullmatch(r'[A-Za-z](\d{9})', idnum).group()
     ticketcorrect = re.fullmatch(r'\d{7}',ticketnum).group()
 
     try:
-        idcorrect == idnum
-        ticketcorrect == ticketnum
+        str(idcorrect) == str(idnum)
+        str(ticketcorrect) == str(ticketnum)
 
         chromeOption = webdriver.ChromeOptions()
         chromeOption.add_argument("--lang=zh-CN.UTF8")
@@ -53,7 +52,7 @@ def cancel_train(cancelinfo):
 
         driver.delete_all_cookies()
         driver.quit()
-        
+
     except:
         finish_text = '格式錯誤，請重新輸入\n注意！票號為7碼'
 
