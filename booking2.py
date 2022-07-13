@@ -49,6 +49,7 @@ def booking_train2(code, bookinfo):
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
 
     try:
+        time.sleep(2)
         idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
         idlocate.send_keys(IDnum)
 
@@ -81,6 +82,6 @@ def booking_train2(code, bookinfo):
         except:
             ticket_situation = '資料有誤，請重新輸入'
     except:
-        ticket_situation = 'idlocate'
+        ticket_situation = 'idlocate2'
 
     return ticket_situation
