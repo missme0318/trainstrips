@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def booking_train2(bookinfo):
+def test():
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument('–first run')
     chromeOption.add_argument("--lang=zh-CN.UTF8")
