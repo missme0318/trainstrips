@@ -61,23 +61,20 @@ def booking_train2(bookinfo):
    
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
     
-    try:        
-        time.sleep(3)
+    time.sleep(3)
 
-        driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+    driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
-        time.sleep(2)
-        ticket_situation = f'進入最後一頁!'
-        
-        try:
-            tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
-            paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-            ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{paidtime}'
+    time.sleep(2)
+    ticket_situation = f'進入最後一頁!'
+    
+    try:
+        tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
+        paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
+        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{paidtime}'
 
-            time.slepp(5)
-        except:
-            ticket_situation = '資料有誤，請重新輸入'
+        time.slepp(5)
     except:
-        ticket_situation = 'Recaptha'
-
+        ticket_situation = '資料有誤，請重新輸入'
+    
     return ticket_situation
