@@ -80,7 +80,7 @@ def booking_train2(code, bookinfo):
             ticket_situation = f'訂購完成！{str(tripsnum)}'
         except:
             ticket_situation = '資料有誤，請重新輸入'
-    except Exception as e:
-        ticket_situation = 'idlocate'+e
+    except:
+        ticket_situation = 'idlocate'
 
     return ticket_situation
