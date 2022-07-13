@@ -32,49 +32,49 @@ def solveRecaptha2():
 
 def booking_train2(bookinfo):
 
-    identification = bookinfo.split('\n')[0]
+    IDnum = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
     endwords = bookinfo.split('\n')[2]
     ridedatebook = bookinfo.split('\n')[3]
-    trips = bookinfo.split('\n')[4]
+    tripsnums = bookinfo.split('\n')[4]
 
     chromeOption = webdriver.ChromeOptions()
+    chromeOption.add_argument('–first run')
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
     driver = webdriver.Chrome(chrome_options=chromeOption)
-    
+
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
 
     
     time.sleep(2)
-    driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(identification)
+    driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(IDnum)
     driver.find_element(By.XPATH, '//*[@id="startStation"]').send_keys(startwords)
     driver.find_element(By.ID, 'endStation').send_keys(endwords)
     date = driver.find_element(By.ID,'rideDate1')
     date.clear()
     date.send_keys(ridedatebook)
-    driver.find_element(By.ID, 'trainNoList1').send_keys(trips)
+    driver.find_element(By.ID, 'trainNoList1').send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
     
     code = solveRecaptha2()
-   
+
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-    
+        
     time.sleep(3)
 
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
 
     time.sleep(2)
-    ticket_situation = f'進入最後一頁!'
     
     try:
-        tripsacu = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
+        tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation = f'訂購完成！{str(tripsacu)}\n請於{str(paidtime)}'
+        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{paidtime}'
 
         time.slepp(5)
     except:
         ticket_situation = '資料有誤，請重新輸入'
-    
+
     return ticket_situation
