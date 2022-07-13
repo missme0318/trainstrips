@@ -32,11 +32,11 @@ def solveRecaptha2():
 
 def booking_train2(bookinfo):
 
-    IDnum = bookinfo.split('\n')[0]
+    identification = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
     endwords = bookinfo.split('\n')[2]
     ridedatebook = bookinfo.split('\n')[3]
-    tripsnums = bookinfo.split('\n')[4]
+    trips = bookinfo.split('\n')[4]
 
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--lang=zh-CN.UTF8")
@@ -47,13 +47,13 @@ def booking_train2(bookinfo):
 
     
     time.sleep(2)
-    driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(IDnum)
+    driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(identification)
     driver.find_element(By.XPATH, '//*[@id="startStation"]').send_keys(startwords)
     driver.find_element(By.ID, 'endStation').send_keys(endwords)
     date = driver.find_element(By.ID,'rideDate1')
     date.clear()
     date.send_keys(ridedatebook)
-    driver.find_element(By.ID, 'trainNoList1').send_keys(tripsnums)
+    driver.find_element(By.ID, 'trainNoList1').send_keys(trips)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
     
@@ -69,9 +69,9 @@ def booking_train2(bookinfo):
     ticket_situation = f'進入最後一頁!'
     
     try:
-        tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
+        tripsacu = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
         paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{paidtime}'
+        ticket_situation = f'訂購完成！{str(tripsacu)}\n請於{paidtime}'
 
         time.slepp(5)
     except:
