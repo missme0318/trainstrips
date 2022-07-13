@@ -56,24 +56,27 @@ def booking_train2(bookinfo):
     driver.find_element(By.ID, 'trainNoList1').send_keys(tripsnums)
     
     driver.find_element(By.ID, 'g-recaptcha-response')
-    
-    code = solveRecaptha2()
-
-    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-        
-    time.sleep(3)
-
-    driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
-
-    time.sleep(2)
-    
     try:
-        tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
-        paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-        ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{paidtime}'
+        code = solveRecaptha2()
+       
+        driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+            
+        time.sleep(3)
 
-        time.slepp(5)
+        driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
+
+        time.sleep(2)
+        ticket_situation = f'訂購完成！{str(tripsnum)}'
+        
+        try:
+            tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
+            paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
+            ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{paidtime}'
+
+            time.slepp(5)
+        except:
+            ticket_situation = '資料有誤，請重新輸入'
     except:
-        ticket_situation = '資料有誤，請重新輸入'
-
+        ticket_situation = 'Recaptha'
+        
     return ticket_situation
