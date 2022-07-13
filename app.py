@@ -61,7 +61,7 @@ def handle_message(event):
 
 
     if msg in ['hi', 'Hi!']:
-        r = 'hi~歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
+        r = 'hi~歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.推薦美食\n\n請輸入想執行的項目'
     elif '查詢車次' in msg:
         r = '請依格式輸入起終點.日期.時間\n例如：\n\n查詢\n高雄\n台北\n20220712\n13:00\n15:00'
     elif '查詢\n' in msg:
@@ -80,10 +80,10 @@ def handle_message(event):
     elif '取消\n' in msg:
         cancelinfo = msg.replace('取消\n','')
         r = cancel_train(cancelinfo)
-    elif '尋找美食' in msg:
-        r = '請輸入：尋找地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
-    elif '尋找' in msg:
-        search = msg.replace('尋找','')
+    elif '推薦美食' in msg:
+        r = '請輸入：推薦地區 食物\n例如：\n\n尋找\n台北火車站 甜點'
+    elif '推薦' in msg:
+        search = msg.replace('推薦','')
         r = delicious(search)
     elif 'code' == msg:
         r = solveRecaptha22()

@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
+import re
 
 
 def cancel_train(cancelinfo):
@@ -15,6 +16,12 @@ def cancel_train(cancelinfo):
     chromeOption.add_argument("--lang=zh-CN.UTF8")
     chromeOption.add_argument('User-Agent=Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0')
     driver = webdriver.Chrome(chrome_options=chromeOption)
+
+    try:
+        re.fullmatch(r'[A-Za-z](\d{9})',IDnum)
+    except:
+        finish_text = '身分證字號格式錯誤\n請重新輸入'
+        break
   
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip115/query')
 
