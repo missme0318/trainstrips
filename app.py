@@ -88,7 +88,7 @@ def handle_message(event):
     elif 'code' == msg:
         r = solveRecaptha22()
     else:
-        r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.尋找美食\n\n請輸入想執行的項目'
+        r = '歡迎訂購火車票\n我們有這些功能：\n1.查詢車次\n2.訂購車票\n3.取消車票\n4.推薦美食\n\n請輸入想執行的項目'
 
     line_bot_api.reply_message(
         event.reply_token,

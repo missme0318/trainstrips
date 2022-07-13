@@ -8,8 +8,6 @@ from twocaptcha import TwoCaptcha
 
 import time
 import os
-import base64
-
 
 
 def solveRecaptha2(bookinfo):
