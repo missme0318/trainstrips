@@ -63,7 +63,7 @@ def booking_train2(code, bookinfo):
 
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
         
-    time.sleep(2)
+    time.sleep(5)
 
     driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
     try:
