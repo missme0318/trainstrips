@@ -28,7 +28,7 @@ def solveRecaptha2(bookinfo):
 
     else:
         code = result['code']
-        ticket_situation = booking_train(code, bookinfo)
+        ticket_situation = booking_train2(code, bookinfo)
 
         return ticket_situation
 
@@ -48,8 +48,8 @@ def booking_train2(code, bookinfo):
 
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
 
-    idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
     try:
+        idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]')
         idlocate.send_keys(IDnum)
 
         start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
@@ -73,10 +73,11 @@ def booking_train2(code, bookinfo):
         driver.find_element(By.XPATH, '//*[@id="queryForm"]/div[4]/input[2]').click()
         
         time.sleep(2)
+        
         try:
             tripsnum = driver.find_element(By.CLASS_NAME, 'cartlist-id').text
-            paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
-            ticket_situation = f'訂購完成！{str(tripsnum)}\n請於{str(paidtime)}'
+            #paidtime = driver.find_element(By.CSS_SELECTOR, 'span.red').text
+            ticket_situation = f'訂購完成！{str(tripsnum)}'
         except:
             ticket_situation = '資料有誤，請重新輸入'
     except:
