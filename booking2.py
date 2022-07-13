@@ -50,19 +50,22 @@ def booking_train2(code, bookinfo):
 
     
     time.sleep(2)
-    driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(IDnum)
+    idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(IDnum)
 
-    driver.find_element(By.XPATH, '//*[@id="startStation"]').send_keys(startwords)
-     
-    driver.find_element(By.ID, 'endStation').send_keys(endwords)
-    
 
     try:
-          
-        date = driver.find_element(By.ID,'rideDate1').clear()
+        start = driver.find_element(By.XPATH, '//*[@id="startStation"]')
+        start.send_keys(startwords)
+
+        end = driver.find_element(By.ID, 'endStation')
+        end.send_keys(endwords)
+
+        date = driver.find_element(By.ID,'rideDate1')
+        date.clear()
         date.send_keys(ridedatebook)
 
-        driver.find_element(By.ID, 'trainNoList1').send_keys(tripsnums)
+        trips = driver.find_element(By.ID, 'trainNoList1')
+        trips.send_keys(tripsnums)
 
         driver.find_element(By.ID, 'g-recaptcha-response')
         driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
