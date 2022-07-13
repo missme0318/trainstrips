@@ -13,7 +13,7 @@ def cancel_train(cancelinfo):
     ticketnum = cancelinfo.split('\n')[1]
 
     idcorrect = re.fullmatch(r'[A-Za-z](\d{9})',idnum).group()
-    ticketcorrect = re.fullmatch(r'(20\d{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])',sourceDate).group()
+    ticketcorrect = re.fullmatch(r'\d{7}',ticketnum).group()
 
     try:
         idcorrect == idnum
