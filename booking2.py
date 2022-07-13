@@ -60,9 +60,9 @@ def booking_train2(code, bookinfo):
     
     driver.find_element(By.ID, 'g-recaptcha-response')
     
-    try:
-        driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
-        
+
+    driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
+    try:    
         time.sleep(2)
 
         
