@@ -49,7 +49,7 @@ def booking_train2(code, bookinfo):
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query')
 
     
-    
+    time.sleep(2)
     idlocate = driver.find_element(By.XPATH, '//*[@id="pid"]').send_keys(IDnum)
 
 
