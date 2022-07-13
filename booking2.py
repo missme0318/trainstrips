@@ -10,7 +10,7 @@ import time
 import os
 
 
-def solveRecaptha2(bookinfo):
+def solveRecaptha2():
 
     train_booking_pageurl = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip121/bookingTicket'
     train_booking_sitekey = '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz'
@@ -26,12 +26,11 @@ def solveRecaptha2(bookinfo):
 
     else:
         code = result['code']
-        ticket_situation = booking_train2(code, bookinfo)
 
-        return ticket_situation
+        return code
 
 
-def booking_train2(code, bookinfo):
+def booking_train2(bookinfo):
 
     IDnum = bookinfo.split('\n')[0]
     startwords = bookinfo.split('\n')[1]
@@ -58,6 +57,7 @@ def booking_train2(code, bookinfo):
     
     driver.find_element(By.ID, 'g-recaptcha-response')
     
+    code = solveRecaptha2()
 
     driver.execute_script("document.getElementById('g-recaptcha-response').innerHTML = '" + code + "'")
         

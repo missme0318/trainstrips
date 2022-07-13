@@ -71,7 +71,7 @@ def handle_message(event):
         r = '請依格式輸入ID.起終點.日期.車次\n例如：\n\n訂購\nS223551400\n高雄\n台北\n20220712\n150'
     elif 't訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
-        r = solveRecaptha2(bookinfo)
+        r = booking_train2(bookinfo)
     elif '訂購\n' in msg:
         bookinfo = msg.replace('訂購\n','')
         r = solveRecaptha(bookinfo)
