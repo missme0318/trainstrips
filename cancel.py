@@ -16,10 +16,9 @@ def cancel_train(cancelinfo):
     chrome_options.add_argument("--headless") #無頭模式
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('blink-settings=imagesEnabled=false') 
-
-    driver=webdriver.Chrome(chrome_options=chrome_options)
+    
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 
     driver.get('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip115/query')
